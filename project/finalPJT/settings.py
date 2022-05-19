@@ -22,10 +22,24 @@ INSTALLED_APPS = [
     # app
     'accounts',
     'movies',
+    'articles',
 
     # 3rd
     'django_extensions',
     'rest_framework',
+    'rest_framework.authtoken',
+
+    # DRF auth
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    # sign up
+    'allauth', 
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # CORS
+    'corsheaders',
 
     # native
     'django.contrib.admin',
@@ -35,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -100,9 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -120,3 +136,20 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# 모두에게 교차출처 허용 (*)
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+# DRF 인증 관련 설정
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 모두에게 허용
+        'rest_framework.permissions.AllowAny', 
+        # 인증된 사용자만 모든일이 가능 / 비인증 사용자는 모두 401 Unauthorized
+        # 'rest_framework.permissions.IsAuthenticated'
+    ]
+}
