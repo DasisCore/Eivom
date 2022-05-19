@@ -7,23 +7,15 @@ class Genre(models.Model):
     genre_name = models.CharField(max_length=50)
     
     def __str__(self):
-        return self.name
+        return str(self.genre_name)
 
 
 class Movie (models.Model):
     movie_id = models.IntegerField(unique=True)
-    title = models.CharField(max_length=100)
-    original_title = models.CharField(max_length=100)
-    backdrop_path = models.CharField(max_length=100)
-    overview = models.TextField(null=True)
-    poster_path = models.CharField(max_length=200, null=True)
-    released_date = models.DateField()
-    vote_average = models.FloatField(null=True)
-    genres = models.ManyToManyField(Genre, related_name="movies", blank=True)
-    like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_movies")
+    like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_movies", blank=True)
 
     def __str__(self):
-        return self.title
+        return str(self.movie_id)
 
 
 class Comment(models.Model):
@@ -33,5 +25,5 @@ class Comment(models.Model):
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
 
-    def __str__(self):
-        return self.user
+    # def __str__(self):
+    #     return self.user // 적용하면 __str__ 에러남
