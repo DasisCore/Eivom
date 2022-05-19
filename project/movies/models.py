@@ -19,7 +19,7 @@ class Movie (models.Model):
     poster_path = models.CharField(max_length=200, null=True)
     released_date = models.DateField()
     vote_average = models.FloatField(null=True)
-    genres = models.ManyToManyField(Genre, related_name="movies", null=True)
+    genres = models.ManyToManyField(Genre, related_name="movies", blank=True)
     like_user = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_movies")
 
     def __str__(self):
@@ -27,7 +27,7 @@ class Movie (models.Model):
 
 
 class Comment(models.Model):
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, related_name="comments_movie", on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateField(auto_now_add=True)

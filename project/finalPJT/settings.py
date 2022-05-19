@@ -41,13 +41,14 @@ INSTALLED_APPS = [
     # CORS
     'corsheaders',
 
-    # native
+    # native apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # dj-rest-auth signup 필요
 ]
 
 SITE_ID = 1
