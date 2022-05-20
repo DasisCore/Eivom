@@ -154,3 +154,6 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated'
     ]
 }
+
+# 대상 컴퓨터에 연결 실패 관련 오류 해결
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
