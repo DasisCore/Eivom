@@ -57,11 +57,11 @@ def like_movie(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     user = request.user
     if movie.like_user.filter(pk=user.pk).exists():
-        movie.like_user.remove(user.pk)
+        movie.like_user.remove(user)
         serializer = MovieSerializer(movie)
         return Response(serializer.data)
     else:
-        movie.like_user.add(user.pk)
+        movie.like_user.add(user)
         serializer = MovieSerializer(movie)
         return Response(serializer.data)
 
@@ -80,14 +80,62 @@ def comment_movie_like(request, comment_pk):
         serializer = MovieSerializer(comment)
         return Response(serializer.data)
 
+
 # 전체 댓글 serializers
 @api_view(['GET', 'POST'])
-def comment_list(request, movie_pk): 
-    comments = get_list_or_404(Comment, movie_id=movie_pk)
-    # comment = get_list_or_404(Comment)
-    if request.method == "GET":
+def comment_list_or_create(request, movie_pk): 
+
+    def comment_list():
+        comments = get_list_or_404(Comment, movie_id=movie_pk)
         serialiezers = CommentListSerializer(comments, many=True)
         return Response(serialiezers.data)
+
+    def create_comment():
+        serializer = CommentListSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    if request.method == "GET":
+        return comment_list()
+    elif request.method == "POST":
+        return create_comment()
+
+
+@api_view(['PUT', 'DELETE'])
+def comment_update_or_delete(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+
+    def update_comment():
+        if request.user == comment.user:
+            serializer = CommentListSerializer(instance=comment, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data)
+
+    def delete_comment():
+        if request.user == comment.user:
+            comment.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+    if request.method == "PUT":
+        if request.user == comment.user:
+            return update_comment()
+    elif request.method == "DELETE":
+        if request.user == comment.user:
+            return delete_comment()
+
+
+
+
+# # 전체 댓글 serializers
+# @api_view(['GET', 'POST'])
+# def comment_list(request, movie_pk): 
+#     comments = get_list_or_404(Comment, movie_id=movie_pk)
+#     # comment = get_list_or_404(Comment)
+#     if request.method == "GET":
+#         serialiezers = CommentListSerializer(comments, many=True)
+#         return Response(serialiezers.data)
 
 
 
