@@ -6,10 +6,10 @@ class GenreAdmin(admin.ModelAdmin):
     list_display = ('genre_id', 'genre_name', )
 
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ('movie_id', )
+    list_display = ('pk', 'movie_id', )
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('content', 'rate', 'movie', 'user',)
+    list_display = ('pk', 'content', 'rate', 'movie', 'user',)
 
 
 

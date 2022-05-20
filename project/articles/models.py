@@ -9,7 +9,7 @@ class Article(models.Model):
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
     post_hit = models.PositiveIntegerField(default=0)
-    article_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_articles")
+    article_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_articles", blank=True)
 
 
     def __str__(self):
@@ -26,7 +26,7 @@ class Comment(models.Model):
     content = models.TextField(null=True)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    comment_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_comments")
+    comment_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_comments", blank=True)
 
     def __str__(self):
         return self.content
