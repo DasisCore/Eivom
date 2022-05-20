@@ -1,6 +1,31 @@
+.DS_Store
+node_modules
+/dist
 
-# Created by https://www.toptal.com/developers/gitignore/api/venv,python,django,vue,vuejs,windows,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=venv,python,django,vue,vuejs,windows,visualstudiocode
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+
+# Created by https://www.toptal.com/developers/gitignore/api/venv,vue,vuejs,visualstudiocode,python,django,windows
+# Edit at https://www.toptal.com/developers/gitignore?templates=venv,vue,vuejs,visualstudiocode,python,django,windows
 
 ### Django ###
 *.log
@@ -335,8 +360,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# local env files
-.env.local
-.env.*.local
-
-# End of https://www.toptal.com/developers/gitignore/api/venv,python,django,vue,vuejs,windows,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/venv,vue,vuejs,visualstudiocode,python,django,windows
