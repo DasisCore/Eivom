@@ -9,7 +9,7 @@ class MovieAdmin(admin.ModelAdmin):
     list_display = ('movie_id', )
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('content', 'movie', 'user',)
+    list_display = ('content', 'rate', 'movie', 'user',)
 
 
 
