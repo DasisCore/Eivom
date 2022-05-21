@@ -56,6 +56,7 @@
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
+  background-color: rgba(244, 244, 244, 0.789);
   }
   
   /* a:hover {
