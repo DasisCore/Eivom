@@ -8,7 +8,7 @@ TMDB_API_KEY = str(os.getenv('TMDB_API_KEY'))
 def get_movie_datas():
     total_data = []
 
-    # 1페이지부터 1000페이지까지 (페이지당 20개, 총 20,000개)
+    # 1페이지부터 500페이지까지 (페이지당 20개, 총 10,000개)
     for i in range(1, 501):
         request_url = f"https://api.themoviedb.org/3/movie/popular?api_key={TMDB_API_KEY}&language=ko-KR&page={i}"
         print(request_url)
