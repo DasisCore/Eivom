@@ -16,11 +16,11 @@
 
     <!-- 움직이는 영상 + 영화 이름 -->
     <div class="" style="position: relative;">
-      <video class="main_video" muted="" autoplay="" loop="" data-inline-media=""  preload="none" width="100%" height="100%" src="../assets/LaLa.mp4"></video>
+      <video class="main_video" muted="" autoplay="" loop="" data-inline-media=""  preload="none" width="100%" height="100%" :src="video"></video>
       <div class="center">
         <div class="title">
-          <h3 class="display-1">La La LAND</h3>
-          <h3 class="fs-5">2016</h3>
+          <h3 class="display-1">{{ title }}</h3>
+          <h3 class="fs-5">{{ release_date }}</h3>
         </div>
       </div>
     </div>
@@ -30,19 +30,18 @@
       <div id="middle" class="d-flex justify-content-center">
         <div>
           <!-- 크기 가로 900 세로 1000으로 자른 뒤, css 이용해 height 600px로 조절 -->
-          <div class="d-flex highlight">
-            <img src="../assets/highlight.jpg" alt="highlight" class="img1">
-            <div id="main_sentense" class="ms-5">
-              <h3 class="display-1">감정의</h3>
-              <h3 class="display-1">폭발.</h3>
+          <div class="d-flex highlight" style="position: relative;">
+            <img :src="highlight" alt="highlight" class="img1">
+            <div id="main_sentense" class="ms-5" style="position: absolute; left: 520px; right: -500px; ">
+              <h3 class="display-1">{{ sentense1 }}</h3>
+              <h3 class="display-1">{{ sentense2 }}</h3>
+              <h3 class="display-1">{{ sentense3 }}</h3>
             </div>
           </div>
           <div class="director">
             <div class="d-flex align-items-center">
-              <p id="highlight_sen" class="me-5">
-                차들로 빽빽이 들어찬 LA의 고속도로. 거북이 걸음이던 도로가 뚫리기 시작하지만 미아 지금 손에 든 연기 오디션 대본을 놓지 못한다. 세바스찬은 경적을 누르며 미아를 노려보고는 사라진다. 악연의 시작. 이후 미아는 감미로운 피아노 선율에 이끌려 재즈바로 향하는데, 연주자가 바로 세바스찬이다. 미아가 세바스찬에게 인사를 건네려고 다가가던 순간은 하필 그가 재즈바의 레퍼토리를 무시하고 연주한 탓에 해고된 직후. 세바스찬은 인사를 건네려 다가온 미아를 쌩하니 스쳐 지나가버린다. 세 번째로 두 사람은 파티에 온 손님과 출장 밴드의 키보드 연주자로 다시 만나는데...
-              </p>
-              <img id="director" src="../assets/director2.jpg" alt="">
+              <p id="highlight_sen" class="me-5">{{ overview }}</p>
+              <img id="director" :src="director" alt="">
             </div>
           </div>
         </div>
@@ -51,13 +50,13 @@
 
     <!-- back image + 제작노트 or 평론 부분 -->
     <div class="" style="position: relative;">
-      <img class="main_video" src="../assets/back.jpg" alt="">
+      <img class="main_video" :src="back" alt="">
       <div class="center">
         <div class="title d-flex justify-content-center">
           <div id="review">
             <div>
-              <p class="">&#60;라라랜드&#62;는 현실적인 공감을 얻을 이야기를 바탕으로 아름다운 LA의 사계절 아래 감미로운 선율의 음악과 다채로운 색채의 향연, 화려한 의상과 최고의 프로덕션을 선사하며 관객들을 황홀경으로 이끈다. 다미엔 차젤레 감독은 다양한 고전 영화에 대한 오마주는 물론 할리우드를 향한 애정과 존경을 영화 전반에 걸쳐 가감 없이 드러냈다. 또한 1950년대 할리우드 영화들이 많이 사용하던 2.55:1 비율의 시네마스코프 사이즈로 촬영해 고전 영화적인 느낌을 살렸다.</p>
-              <p class="text-end">제작 노트 중.</p>
+              <p class="">{{ review }}</p>
+              <p class="text-end">{{ reviewer }}</p>
             </div>
           </div>
         </div>
@@ -75,9 +74,12 @@
 <script>
 
   import MainCardList from '../components/main/MainCardList.vue'
+  import movie from '../assets/main_movies/movies.json'
   import _ from 'lodash'
+
   let num = _.random(1, 9)
-  console.log(num)
+  // console.log(movie)
+  console.log(movie.movies[num].title)
 
   export default {
     name: 'MainView',
@@ -86,12 +88,31 @@
     },
     data: function() {
       return {
-        
+        movie_data: movie,
+        title: "",
+        release_date: "",
+        sentense1: "",
+        sentense2: "",
+        sentense3: "",
+        overview: "",
+        review: "",
+        reviewer: "",
+        video:require("../assets/main_movies/movie" + num + ".mp4"),
+        highlight:require("../assets/main_movies/highlight" + num + ".jpg"),
+        director:require("../assets/main_movies/director" + num + ".jpg"),
+        back:require("../assets/main_movies/back" + num + ".jpg"),
       }
     },
-    created: {
-      
-    }
+    created() {
+      this.title = movie.movies[num].title
+      this.release_date = movie.movies[num].release_date
+      this.sentense1 = movie.movies[num].sentense1
+      this.sentense2 = movie.movies[num].sentense2
+      this.sentense3 = movie.movies[num].sentense3
+      this.overview = movie.movies[num].overview
+      this.review = movie.movies[num].review
+      this.reviewer = movie.movies[num].reviewer
+      }
   }
 
   window.addEventListener('scroll', function(){
@@ -120,9 +141,8 @@
 
 <style scoped>
 
-  /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&family=Open+Sans:ital,wght@1,800&display=swap'); */
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-  /* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap'); */
+
   #detail {
     height: 100vh;
   }
@@ -141,7 +161,7 @@
   }
 
   #main_sentense {
-    padding-top: 150px;
+    padding-top: 100px;
   }
 
   #highlight_sen {
@@ -198,7 +218,7 @@
     top: 40%;
     width: 100%;
     text-align: center;
-    z-index: 1;
+    z-index: 10;
   }
 
   .page {
