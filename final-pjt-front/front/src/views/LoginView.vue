@@ -1,49 +1,42 @@
 <template>
-  <div style="background-color: #dcf6f9">
-    <p class="display-3 fw-bold">로그인</p>
-    <account-error-list v-if="authError"></account-error-list>
-    <div class="d-flex justify-content-center">
-      
-      
-      <!-- <div style="height: 300px"> -->
-        <!-- <form @submit.prevent="login(credentials)">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">@</span>
-            <label for="username"></label>
-            <input v-model="credentials.username" id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" style="border-right: 0px;" required />
-            <span class="input-group-text" id="basic-addon1" style="background-color: white;">&#60;</span>
-          </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">@</span>
-            <label for="password"></label>
-            <input v-model="credentials.password" id="password" type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" style="border-right: 0px;" required />
-            <button class="input-group-text" id="basic-addon1" style="background-color: white;">&#60;</button>
-          </div>
-        </form> -->
-
-        <form @submit.prevent="login(credentials)" id="userInfo" name="userInfo">
-          <div class="login-form">
-            <div class="backbtn" id="backbtn" @click="back">
-              <i class="fa-solid fa-reply"></i>
+  <div id="main" class="d-flex">
+      <div class="login_logo display-4">
+        로그인.
+      </div>
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="d-flex justify-content-center align-items-center mb-5">
+          <div>
+      <account-error-list v-if="authError"></account-error-list>
+            <div>
+              <form @submit.prevent="login(credentials)" id="userInfo" name="userInfo">
+                <div class="login-form">
+                  <div class="backbtn" id="backbtn" @click="back">
+                    <i class="fa-solid fa-reply"></i>
+                  </div>
+                  <div class="phases" id="phase-form">
+                    <div class="phase-1">
+                      <input id="username" v-model="credentials.username" autocomplete="off" type="text" placeholder="User ID">
+                      <button @click.prevent="next"><i class="fa-solid fa-circle-arrow-right"></i></button>
+                    </div>
+                    <div class="phase-2">
+                      <input type="password" v-model="credentials.password" id="password" @keydown.esc="back" @keydown.enter="submitForm" placeholder="Enter password">
+                      <button @click="submitForm"><i class="fa-solid fa-circle-arrow-right"></i></button>      
+                    </div>
+                  </div>
+                  <div class="loading"></div>
+                </div>
+              </form>
             </div>
-            <div class="phases" id="phase-form">
-              <div class="phase-1">
-                <input id="username" v-model="credentials.username" autocomplete="off" type="text" placeholder="User ID">
-                <button @click.prevent="next"><i class="fa-solid fa-circle-arrow-right"></i></button>
-              </div>
-              <div class="phase-2">
-                <input type="password" v-model="credentials.password" id="password" @keydown.esc="back" @keydown.enter="submitForm" placeholder="Enter password">
-                <button @click="submitForm"><i class="fa-solid fa-circle-arrow-right"></i></button>      
+
+            <div>
+              <div class="separator" style="width:100%; max-width: 328px; margin:auto; height: 1px; background-image: url(https://appleid.cdn-apple.com/appleauth/static/bin/cb1633718600/dist/assets/HR_gradient_dark.png); background-size: cover;"></div>
+              <div class="text-center sign_up">
+                <div class="mt-4">계정이 없으신가요?</div>
+                <router-link to="/signup" class="nav-link" active-class="active">지금 바로 만들러 가기</router-link>
               </div>
             </div>
-            <div class="loading"></div>
           </div>
-        </form>
-
-
-        <router-link to="/signup" class="nav-link fw-bold text-secondary fs-1"
-        active-class="active">signup</router-link>
-      <!-- </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -136,6 +129,43 @@ export default {
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
   @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css";
 
+  .login_logo {
+    position: absolute;
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-weight: 500;
+    color: #1d1d1f;
+    padding-left: 20%;
+    padding-top: 5%;
+    /* left: 20%;
+    top: 10%; */
+  }
+
+  #main {
+    height: 1150px;
+
+  }
+
+  .separator {
+    width:100%;
+    max-width: 328px; 
+    margin:auto; 
+    height: 1px; 
+    background-image: url(https://appleid.cdn-apple.com/appleauth/static/bin/cb1633718600/dist/assets/HR_gradient_dark.png); 
+    background-size: cover;
+  }
+
+  .sign_up {
+    color: #494949;
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-weight: 400;
+  }
+
+  .sign_up > a {
+    text-decoration-line: none;
+    color: #0070c9;
+  }
+
+
   .login-form {
     margin:0px;
     padding:0px;
@@ -147,22 +177,22 @@ export default {
     left:50%; */
     /* transform:translate(-50%,-50%); */
     transform:translate(0%,0%);
-    width: 300px;
-    height: 150px;
+    width: 350px;
+    height: 100px;
     background: rgba(144, 61, 61, 0);
     box-shadow: 0px 5px 80px 0px #e4e8f000;
     overflow:hidden;
   }
   .login-form .backbtn {
     position:relative;
-    top:10px;
-    left:10px;
+    top: 10px;
+    left: 10px;
     background:#d0d0d0;
-    width:25px;
-    height:25px;
-    text-align:center;
-    line-height:25px;
-    border-radius:50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 50%;
     color:#fff;
     cursor:not-allowed;
     transition:all 200ms ease;
@@ -177,36 +207,36 @@ export default {
   }
   .phases {
     position:relative;
-    top:10px;
+    top: 10px;
     /* height:200px; */
-    width:200%;
-    left:0%;
+    width: 200%;
+    left: 0%;
     transition:all 300ms ease;
   }
   .phases  div {
-    width:50%;
-    float:left;
-    display:flex;
+    width: 50%;
+    float: left;
+    display: flex;
     flex-direction:column;
-    padding:0px 20px;
+    padding: 0px 20px;
   }
   .phases div * {
     margin: -4px -10px;
   }
   .phases div input {
-    height:40px;
+    height: 40px;
     border: 1px solid #d6d6d6;
-    padding-left:5px;
-    border-radius:7px;
+    padding-left: 10px;
+    border-radius: 7px;
   }
   #username:focus {
-    height:40px;
+    height: 40px;
     /* border: 4px solid #0070c9 !important; */
     border-width: 1px;
     border-color: #0070c9;
     box-shadow: 0 0 0 1px #0070c9;
     z-index: -10000;
-    padding-left:5px;
+    padding-left: 10px;
     border-radius:7px;
     outline: none;
   }
@@ -218,8 +248,8 @@ export default {
     border-color: #0070c9;
     box-shadow: 0 0 0 1px #0070c9;
     z-index: -10000;
-    padding-left:5px;
-    border-radius:7px;
+    padding-left: 10px;
+    border-radius: 7px;
     outline: none;
   }
 
@@ -231,7 +261,7 @@ export default {
 
     position: relative;
     top: -24px;
-    left: 250px;
+    left: 300px;
     background:#d0d0d0;
     width:23px;
     height:23px;
@@ -253,7 +283,7 @@ export default {
     left:0px;
     width:100%;
     height:100%;
-    background:#dcf6f9;
+    background:#ffffff;
     display:none;
     z-index:2;
   }
@@ -269,7 +299,7 @@ export default {
     width:50px;
     height:50px;
     border:5px solid #eee;
-    border-top-color:#d0d0d0;
+    border-top-color:#b3b3b3;
     border-radius:50%;
     animation:loading 900ms ease infinite;
   }

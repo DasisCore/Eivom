@@ -83,7 +83,7 @@ export default {
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
-  background-color: rgba(244, 244, 244, 0.789);
+  background-color: #f5f5f7;
   }
   
   .short_menu:hover:after {
