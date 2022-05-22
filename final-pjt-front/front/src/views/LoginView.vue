@@ -183,6 +183,7 @@ export default {
     box-shadow: 0px 5px 80px 0px #e4e8f000;
     overflow:hidden;
   }
+  
   .login-form .backbtn {
     position:relative;
     top: 10px;

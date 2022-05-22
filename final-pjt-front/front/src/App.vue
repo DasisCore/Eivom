@@ -7,28 +7,28 @@
       <ul class="nav align-items-center justify-content-between">
         <div class="d-flex align-items-center justify-content-between">
           <div class="">
-            <router-link to="/" class="nav-link fw-bold text-secondary">
+            <router-link to="/" class="nav-link text-secondary">
               <img src="./assets/Eivom_uppercase.png" alt="" class="nav-link">
           </router-link>
           </div>
 
           <li class="nav-item short_menu">
-            <router-link to="/" class="nav-link fw-bold text-secondary"
-            active-class="active">main</router-link>
+            <router-link to="/" class="nav-link text-secondary"
+            active-class="active">메인</router-link>
           </li>
 
           <li class="nav-item long_menu">
-            <router-link to="/recommend" class="nav-link fw-bold text-secondary"
-            active-class="active">recommend</router-link>
+            <router-link to="/recommend" class="nav-link text-secondary"
+            active-class="active">추천</router-link>
           </li>
 
           <li class="nav-item long_menu">
-            <router-link to="/community" class="nav-link fw-bold text-secondary"
-            active-class="active">community</router-link>
+            <router-link to="/community" class="nav-link text-secondary"
+            active-class="active">광장</router-link>
           </li>
 
           <li class="nav-item long_menu">
-            <router-link to="/moviedetail" class="nav-link fw-bold text-secondary"
+            <router-link to="/moviedetail" class="nav-link text-secondary"
             active-class="active"> 임시 영화 상세 페이지 링크 </router-link>
           </li>
           
@@ -45,12 +45,12 @@
               </div>
             </div>
           </div>
-          <router-link :to="{ name : 'profile' }" class="nav-link fw-bold text-secondary"
-            active-class="active">Profile</router-link>
-          <router-link to="/logout" class="nav-link fw-bold text-secondary"
-            active-class="active" v-if="isLoggedIn">Logout icon</router-link>
-          <router-link to="/login" class="nav-link fw-bold text-secondary"
-            active-class="active" v-else>Login icon</router-link>
+          <router-link :to="{ name : 'profile' }" class="nav-link text-secondary"
+            active-class="active" v-if="isLoggedIn" style="font-size:22px; color: gray !important;"><i class="fa-solid fa-circle-user"></i></router-link>
+          <router-link to="/logout" class="nav-link text-secondary"
+            active-class="active" v-if="isLoggedIn" style="font-size:22px; color: gray !important;"><i class="fa-solid fa-arrow-right-from-bracket"></i></router-link>
+          <router-link to="/login" class="nav-link text-secondary"
+            active-class="active" v-else style="font-size:22px; color: gray !important;"><i class="fa-solid fa-arrow-right-to-bracket"></i></router-link>
         </div>
       </ul>
     </nav>
@@ -77,11 +77,13 @@ export default {
 </script>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Open+Sans:300,400');
+  @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css";
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
   nav {
   height: 100%;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Noto Sans KR',  sans-serif;
+  font-weight: 500 !important;
   font-size: 14px;
   background-color: #f5f5f7;
   }
@@ -97,7 +99,7 @@ export default {
   .long_menu:hover:after {
   content: "";
   display: block;
-  width: 60px;
+  width: 30px;
   border-bottom: 2px solid #bcbcbc;
   margin: 3px auto;
   }
@@ -120,7 +122,15 @@ export default {
   */
 
   @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
-  h1{ text-align:center; font-family: 'Open Sans', sans-serif; font-size:24px; margin-top:10%; color:#33739A;}
+
+  h1{ 
+    text-align:center; 
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-size:24px; 
+    margin-top:10%; 
+    color:#33739A;
+  }
+  
   /* 서치 아이콘 위치 설정 */
   .search-form {
     /* position: absolute; */
@@ -128,7 +138,7 @@ export default {
     left: 90%; */
     /* top: 100px; */
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 16px;
     transform: translate(-0%);
   }
 
@@ -161,11 +171,11 @@ export default {
 
   }
   .search-box input[type="text"]:focus + span {
-    top: -4px;
+    top: -6px;
     width: 250px;
     height: 30px;
     border: none;
-    background: #ebeff1;
+    background: #c5c5c5e5;
   }
   .search-box input[type="text"]:focus + span::before {
     width: 2px;
