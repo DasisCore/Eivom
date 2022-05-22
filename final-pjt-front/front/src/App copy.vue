@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-
-
-    
     <nav>
       <ul class="nav align-items-center justify-content-between">
         <div class="d-flex align-items-center justify-content-between">
@@ -35,16 +32,8 @@
         </div>
 
         <div class="d-flex me-3">
-          <!-- <router-link to="/" class="nav-link fw-bold text-secondary"
-            active-class="active">Search icon</router-link> -->
-          <div>
-            <div class="search-form">
-              <div class="search-box">
-                <input type="text" />
-                <span></span>
-              </div>
-            </div>
-          </div>
+          <router-link to="/" class="nav-link fw-bold text-secondary"
+            active-class="active">Search icon</router-link>
           <router-link :to="{ name : 'profile' }" class="nav-link fw-bold text-secondary"
             active-class="active">Profile</router-link>
           <router-link to="/logout" class="nav-link fw-bold text-secondary"
@@ -86,6 +75,12 @@ export default {
   background-color: rgba(244, 244, 244, 0.789);
   }
   
+  /* a:hover {
+    cursor: pointer;
+    color: black !important;
+    border-bottom: solid 3px;
+    border-bottom-color: gray ;
+  } */
   .short_menu:hover:after {
   content: "";
   display: block;
@@ -111,89 +106,5 @@ export default {
     color: black !important;
   }
 
-  /* 
-  
-  
-  
-  
-  
-  */
 
-  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
-  h1{ text-align:center; font-family: 'Open Sans', sans-serif; font-size:24px; margin-top:10%; color:#33739A;}
-  /* 서치 아이콘 위치 설정 */
-  .search-form {
-    /* position: absolute; */
-    /* right: 20%;
-    left: 90%; */
-    /* top: 100px; */
-    margin-right: 10px;
-    margin-top: 10px;
-    transform: translate(-0%);
-  }
-
-  .search-box input[type="text"] {
-    border: none;
-    background: none;
-    z-index: 1;
-    width: 25px;
-    height: 20px;
-    transition: all .25s ease-in .25s;
-    color: transparent;
-    font-size: .75rem;
-    line-height: 25px;
-  }
-  .search-box input[type="text"]:hover {
-    cursor: pointer;
-  }
-  .search-box input[type="text"]:hover:focus {
-    cursor: text;
-  }
-  .search-box input[type="text"]:hover + span {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  .search-box input[type="text"]:focus {
-    width: 250px;
-    padding: 0px 15px;
-    outline: none;
-    color: black;
-    background: none;
-
-  }
-  .search-box input[type="text"]:focus + span {
-    top: -4px;
-    width: 250px;
-    height: 30px;
-    border: none;
-    background: #ebeff1;
-  }
-  .search-box input[type="text"]:focus + span::before {
-    width: 2px;
-    opacity: 0;
-    transition: all .25s ease-in;
-  }
-  .search-box input[type="text"] + span {
-    z-index: -1;
-    position: absolute;
-    border: 2px solid #948C8C;
-    top: 0;
-    width: 15px;
-    height: 15px;
-    transition: all .25s ease-in .25s;
-    border-radius: 25px;
-    left: 0px;
-  }
-  .search-box input[type="text"] + span::before {
-    transition: all .25s ease-in .5s;
-    transform-origin: left top;
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 4px;
-    border-radius: 5px;
-    background:#948C8C;
-    transform: rotate(45deg) translate(26px, -2px);
-    top: -9px;
-    left: -9px;
-  }
 </style>

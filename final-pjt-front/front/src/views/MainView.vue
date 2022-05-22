@@ -15,6 +15,7 @@
     </div>
 
     <!-- 움직이는 영상 + 영화 이름 -->
+    
     <div class="" style="position: relative;">
       <video class="main_video" muted="" autoplay="" loop="" data-inline-media=""  preload="none" width="100%" height="100%" :src="video"></video>
       <div class="center">
@@ -178,12 +179,12 @@
   }
 
   #director {
-    width: 20rem;
+    width: 22rem;
   }
 
   #review > div > p {
     width: 50vw;
-    font-size: 0.75vw;
+    font-size: 1.5vw;
     color: #ffffffd1;
     font-family: 'Noto Sans KR',  sans-serif;
     font-weight: 500;
