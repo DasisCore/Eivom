@@ -5,7 +5,9 @@ import RecommendView from '../views/RecommendView.vue'
 import CommunityView from '../views/CommunityView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import LoginView from '../views/LoginView.vue'
+import LogoutView from '../views/LogoutView.vue'
 import SignUpView from '../views/SignUpView.vue'
+import NotFound404 from '../views/NotFound404.vue'
 
 // 임시 영화 상세 페이지 라우터
 import MovieDetailView from '../views/MovieDetailView.vue'
@@ -34,7 +36,7 @@ const routes = [
     component: CommunityView
   },
   {
-    path: '/profile',
+    path: '/profile/:username',
     name: 'profile',
     component: ProfileView
   },
@@ -44,9 +46,23 @@ const routes = [
     component: LoginView
   },
   {
+    path: '/logout',
+    name: 'logout',
+    component: LogoutView
+  },
+  {
     path: '/signup',
     name: 'signup',
     component: SignUpView
+  },
+  {
+    path: '/404',
+    name: 'NotFound404',
+    component: NotFound404
+  },
+  {
+    path: '*',
+    redirect: '/404'
   },
 
   // 임시로 만든 영화 상세 페이지 라우터

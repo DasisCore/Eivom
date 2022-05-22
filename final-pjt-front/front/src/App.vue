@@ -34,10 +34,12 @@
         <div class="d-flex me-3">
           <router-link to="/" class="nav-link fw-bold text-secondary"
             active-class="active">Search icon</router-link>
-          <router-link to="/profile" class="nav-link fw-bold text-secondary"
+          <router-link :to="{ name : 'profile' }" class="nav-link fw-bold text-secondary"
             active-class="active">Profile</router-link>
+          <router-link to="/logout" class="nav-link fw-bold text-secondary"
+            active-class="active" v-if="isLoggedIn">Logout icon</router-link>
           <router-link to="/login" class="nav-link fw-bold text-secondary"
-            active-class="active">Login icon</router-link>
+            active-class="active" v-else>Login icon</router-link>
         </div>
       </ul>
     </nav>
@@ -48,6 +50,20 @@
     </footer>
   </div>
 </template>
+
+
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  name: 'App',
+  components: {
+
+    },
+  computed: {
+    ...mapGetters(['isLoggedIn'])
+  },
+}
+</script>
 
 <style scoped>
   @import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Open+Sans:300,400');

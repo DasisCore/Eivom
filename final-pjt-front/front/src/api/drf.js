@@ -1,7 +1,8 @@
-const HOST = 'http://localhost:8000/api/v1/'
+const HOST = 'http://localhost:8000/'
 
 const ACCOUNTS = 'accounts/'
 const ARTICLES = 'articles/'
+const MOVIES = 'movies/'
 const COMMENTS = 'comments/'
 
 export default {
@@ -24,4 +25,7 @@ export default {
     comment: (articlePk, commentPk) =>
       HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
   },
+  movies: {
+    movies: () => HOST + MOVIES,
+  }
 }
