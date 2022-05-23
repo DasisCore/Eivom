@@ -1,8 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// import store from '../store'
+
 import MainView from '../views/MainView.vue'
 import RecommendView from '../views/RecommendView.vue'
 import CommunityView from '../views/CommunityView.vue'
+import ArticleDetailView from '../views/ArticleDetailView.vue'
+import ArticleEditView from '../views/ArticleEditView.vue'
+import ArticleNewView from '../views/ArticleNewView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
@@ -27,13 +32,28 @@ const routes = [
   },
   {
     path: '/recommend',
-    name: 'Recommend',
+    name: 'recommend',
     component: RecommendView
   },
   {
     path: '/community',
     name: 'community',
     component: CommunityView
+  },
+  {
+    path: '/community/new',
+    name: 'articleNew',
+    component: ArticleNewView
+  },
+  {
+    path: '/community/:articlePk',
+    name: 'article',
+    component: ArticleDetailView
+  },
+  {
+    path: '/community/:articlePk/edit',
+    name: 'articleEdit',
+    component: ArticleEditView
   },
   {
     path: '/profile/:username',
@@ -93,5 +113,26 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+// router.beforeEach((to, from, next) => {
+//   // 이전 페이지에서 발생한 에러메시지 삭제
+//   store.commit('SET_AUTH_ERROR', null)
+
+//   const { isLoggedIn } = store.getters
+
+//   const noAuthPages = ['login', 'signup', 'community', 'mainpage','recommend','profile','moviedetail','movieactors','similarmovies']
+
+//   const isAuthRequired = !noAuthPages.includes(to.name)
+
+//   if (isAuthRequired && !isLoggedIn) {
+//     alert('Require Login. Redirecting..')
+//     next({ name: 'login' })
+//   } else {
+//     next()
+//   }
+
+//   if (!isAuthRequired && isLoggedIn) {
+//     next({ name: 'articles' })
+//   }
+// })
 
 export default router

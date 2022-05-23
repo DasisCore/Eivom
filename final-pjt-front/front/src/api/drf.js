@@ -24,6 +24,8 @@ export default {
     comments: articlePk => HOST + ARTICLES + `${articlePk}/` + COMMENTS,
     comment: (articlePk, commentPk) =>
       HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/`,
+    likeComment: (articlePk, commentPk) =>
+      HOST + ARTICLES + `${articlePk}/` + COMMENTS + `${commentPk}/` + 'like/'
   },
   movies: {
     movies: () => HOST + MOVIES,

@@ -33,7 +33,7 @@ def article_detail_or_update_or_delete(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
 
     def article_detail():
-        serializer =  ArticleSerializer(article)
+        serializer =  ArticleListSerializer(article)
         return Response(serializer.data)
 
     def update_article():
@@ -44,7 +44,7 @@ def article_detail_or_update_or_delete(request, article_pk):
                 return Response(serializer.data)
 
     def delete_article():
-        if request.user == article.uset:
+        if request.user == article.user:
             article.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -79,7 +79,7 @@ def comment_list_or_create(request, article_pk):
 
     def comment_list():
         comments = get_list_or_404(Comment, article=article_pk)[::-1]
-        serializer = CommentListSerializer(comments, many=True)
+        serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
     def create_comment():
@@ -87,7 +87,10 @@ def comment_list_or_create(request, article_pk):
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(article=article, user=request.user)
+            comments = article.comments.all()
+            serializer = CommentSerializer(comments, many=True)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+            
 
     if request.method == 'GET':
         return comment_list()
