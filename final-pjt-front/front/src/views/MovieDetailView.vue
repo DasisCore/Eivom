@@ -41,32 +41,20 @@
             </div>
           </div>
         </div>
-      </div>  
+      </div> 
 
-      <!-- <div class="container-fluid parallax bg-img2" 
-      :style="`background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('https://image.tmdb.org/t/p/original/${ bgImg2 }');`">
-        <div class="middle">
-          <div class="container" style="max-width: 550px">
-            <blockquote class="text-center">
-              <i class="fa fa-quote-left fa-3x fa-pull-left" aria-hidden="true"></i>
-              <p class="mb-1 lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste nam et facere perspiciatis optio autem facilis minus nostrum suscipit repudiandae. Assumenda, soluta minima. Eligendi possimus quisquam sed, qui ut alias.</p>
-              <footer class="text-uppercase text-white">Hayao Miyazaki</footer>
-            </blockquote>
-          </div>
-        </div>
-      </div> -->
       <hr>
       <div>
-        <similar-movie-list ></similar-movie-list>
-        <div class="d-flex">
-          <router-link to="/moviedetail" class="nav-link fw-bold text-secondary"
-          active-class="active">actor list</router-link>
-          <router-link to="/moviedetail/similarmovies" class="nav-link fw-bold text-secondary"
-          active-class="active">similar movie list</router-link>
-          
+        
+
+        <div id="menu" class="d-flex" >
+          <div id="actors" class="long_menu" @click="click_actor" >배우 목록</div>
+          &nbsp;|&nbsp;
+          <div id="s_movie" class="long_menu" @click="click_s_movie" >비슷한 영화</div>
         </div>
         <hr>
-        <router-view/>
+        <movie-actors-list :movieID="movieID" v-if="menubar"></movie-actors-list>
+        <similar-movie-item v-if="menubar === false" :movieID="movieID"></similar-movie-item>
       </div>
       <hr>
       <movie-comment-list></movie-comment-list>
@@ -78,6 +66,9 @@
 
 <script>
 import MovieCommentList from '../components/moviedetail/MovieCommentList.vue'
+import MovieActorsList from '../components/moviedetail/MovieActorsList.vue'
+import SimilarMovieItem from '../components/moviedetail/SimilarMovieItem.vue'
+
 import axios from "axios"
 // import _ from "lodash"
 
@@ -101,10 +92,31 @@ export default {
       runtime: '',
       vote_average: '',
       overview: '',
+      menubar: true,
+    }
+  },
+  methods: {
+    click_actor: function() {
+      if (this.menubar === false) {
+        this.menubar = true
+        const actors = document.querySelector("#actors")
+        const s_movie = document.querySelector("#s_movie")
+        actors.classList.add('class', 'active')
+        s_movie.classList.remove('class', 'active')
+      }
+    },
+    click_s_movie: function() {
+      if (this.menubar === true) {
+        this.menubar = false
+        const actors = document.querySelector("#actors")
+        const s_movie = document.querySelector("#s_movie")
+        actors.classList.remove('class', 'active')
+        s_movie.classList.add('class', 'active')
+      }
     }
   },
   components: {
-    MovieCommentList,
+    MovieCommentList, MovieActorsList, SimilarMovieItem
   },
   created() {
     axios.get(URL + this.movieID, {
@@ -126,8 +138,9 @@ export default {
 
       this.vote_average = res.data.vote_average
       this.overview = res.data.overview
-      console.log(res.data)
+      // console.log(res.data)
       })
+      .catch(err => console.log(err))
 
   }
 }
@@ -136,12 +149,28 @@ export default {
 <style scoped>
 
   .active {
-    color: black !important;
+    color: crimson !important;
   }
 
-  /* .active {
-    color: red;
-  } */
+  #actors {
+    cursor: pointer;
+  }
+
+  #s_movie {
+    cursor: pointer;
+  }
+
+  .long_menu:hover:after {
+    content: "";
+    display: block;
+    width: 40px;
+    border-bottom: 2px solid #bcbcbc;
+    margin: 3px auto;
+    position: absolute;
+    margin-left: 20px;
+    
+    }
+
 
   .loading {
     margin-top: 3.5rem;

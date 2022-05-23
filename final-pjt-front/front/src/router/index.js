@@ -74,14 +74,17 @@ const routes = [
       {
         path: '/moviedetail',
         name: 'movieactors',
-        component: MovieActorsList
+        component: MovieActorsList,
+        props: true
       },
       {
         path: '/moviedetail/similarmovies',
         name: 'similarmovies',
-        component: SimilarMovieList
+        component: SimilarMovieList,
+        props: true
       },
-    ]
+    ],
+    props: true,
   },
 
 
