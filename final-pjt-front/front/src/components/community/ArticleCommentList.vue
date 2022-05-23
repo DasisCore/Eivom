@@ -1,12 +1,28 @@
 <template>
-  <div>
-    articleCommentlist
+  <div class="article-comment-list">
+    
+    <ul>
+      <article-comment-list-item 
+        v-for="comment in comments" 
+        :comment="comment" 
+        :key="comment.pk">
+      </article-comment-list-item>        
+    </ul>
+
+    <article-comment-list-form></article-comment-list-form>
   </div>
 </template>
 
 <script>
+import ArticleCommentListItem from '@/components/community/ArticleCommentListItem.vue'
+import ArticleCommentListForm from '@/components/community/ArticleCommentListForm.vue'
+// import { mapGetters, mapActions } from 'vuex'
+
+
 export default {
-  name:'articleCommentList'
+  name: 'CommentList',
+  components: { ArticleCommentListForm, ArticleCommentListItem },
+  props: { comments: Array },
 }
 </script>
 

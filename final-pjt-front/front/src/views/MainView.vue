@@ -113,7 +113,7 @@
       this.overview = movie.movies[num].overview
       this.review = movie.movies[num].review
       this.reviewer = movie.movies[num].reviewer
-      }
+      },
   }
 
   window.addEventListener('scroll', function(){

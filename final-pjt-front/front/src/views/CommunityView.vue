@@ -29,7 +29,6 @@ export default {
 <style scoped>
 .app {
   height: 80rem;
-  background-color: #0f7aa0
 }
 
 </style>

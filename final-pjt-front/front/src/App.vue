@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-
-
-    
     <nav>
       <ul class="nav align-items-center justify-content-between">
         <div class="d-flex align-items-center justify-content-between">
@@ -45,7 +42,7 @@
               </div>
             </div>
           </div>
-          <router-link :to="{ name : 'profile' }" class="nav-link text-secondary"
+          <router-link :to="{ name : 'profile', params: { username: currentUser.username} }" class="nav-link text-secondary"
             active-class="active" v-if="isLoggedIn" style="font-size:22px; color: gray !important;"><i class="fa-solid fa-circle-user"></i></router-link>
           <router-link to="/logout" class="nav-link text-secondary"
             active-class="active" v-if="isLoggedIn" style="font-size:22px; color: gray !important;"><i class="fa-solid fa-arrow-right-from-bracket"></i></router-link>
@@ -64,15 +61,22 @@
 
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'App',
   components: {
 
     },
   computed: {
-    ...mapGetters(['isLoggedIn'])
+    ...mapGetters(['isLoggedIn', 'currentUser'])
   },
+  methods: {
+    ...mapActions(['fetchCurrentUser'])
+  },
+  created() {
+    this.fetchCurrentUser()
+  }
+  
 }
 </script>
 
