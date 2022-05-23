@@ -29,7 +29,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = "__all__"
+        fields = ('title', 'content',)
 
 
 
@@ -41,9 +41,11 @@ class CommentListSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    
+    
     class Meta:
         model = Comment
-        fields = "__all__"
+        fields = ('content',)
 
 
 

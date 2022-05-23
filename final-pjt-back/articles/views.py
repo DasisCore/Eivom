@@ -83,9 +83,10 @@ def comment_list_or_create(request, article_pk):
         return Response(serializer.data)
 
     def create_comment():
-        serializer = CommentListSerializer(data=request.data)
+        article = get_object_or_404(Article, pk=article_pk)
+        serializer = CommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(user=request.user)
+            serializer.save(article=article, user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     if request.method == 'GET':
@@ -102,7 +103,7 @@ def comment_update_or_delete(request, article_pk, comment_pk):
 
     def update_comment():
         if request.user == comment.user:
-            serializer = CommentListSerializer(instance=comment, data=request.data)
+            serializer = CommentSerializer(instance=comment, data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
                 comments = article.comments.all()
