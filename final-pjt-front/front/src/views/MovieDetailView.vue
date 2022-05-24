@@ -143,6 +143,13 @@ export default {
       // console.log(res.data)
       })
       .catch(err => console.log(err))
+  },
+  watch: {
+      '$route' (to, from) {
+        location.reload()
+        console.log(to)
+        console.log(from)
+      }
   }
 }
 </script>
@@ -183,6 +190,7 @@ export default {
     font-weight: 500;
     color: #6c757d;
   }
+
   .long_menu:hover:after {
     content: "";
     display: block;
@@ -191,7 +199,6 @@ export default {
     margin: 3px auto;
     position: absolute;
     margin-left: 20px;
-
     }
 
 
