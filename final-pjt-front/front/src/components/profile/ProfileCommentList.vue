@@ -1,31 +1,29 @@
 <template>
   <div class="app12">
     profile comment list
-    <!-- v-for 부분 -->
-    <profile-comment-item></profile-comment-item>
-    <p></p>
-    <profile-comment-item></profile-comment-item>
-    <p></p>
-    <profile-comment-item></profile-comment-item>
-    <p></p>
-    <profile-comment-item></profile-comment-item>
-    <p></p>
-    <profile-comment-item></profile-comment-item>
-    <!--  -->
-    <p></p>
-    <input type="text" placeholder="댓글입력창">
-    <p></p>
-    <button class="btn btn-primary">등록</button>
+    <ul>
+      <!-- <profile-comment-list-item 
+        v-for="comment in comments" 
+        :comment="comment" 
+        :key="comment.pk">
+      </profile-comment-list-item>         -->
+      <profile-comment-list-item>
+      </profile-comment-list-item> 
+    </ul>
+
+    <profile-comment-list-form></profile-comment-list-form>
   </div>
 </template>
 
 <script>
-import ProfileCommentItem from './ProfileCommentItem.vue'
+import ProfileCommentListItem from './ProfileCommentListItem.vue'
+import ProfileCommentListForm from './ProfileCommentListForm.vue'
 
 export default {
   name: 'profile_comment_list',
   components: {
-    ProfileCommentItem,
+    ProfileCommentListItem,
+    ProfileCommentListForm
   }
 }
 </script>

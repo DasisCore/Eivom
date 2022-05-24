@@ -44,18 +44,25 @@
           </tbody>
       </table>
     </div>
+    <div class="d-flex justify-content-center">
+      <pagination></pagination>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import Pagination from '@/components/community/Pagination.vue'
 export default { 
   name: "article_list",
-  computed: {
-    ...mapGetters(['articles'])
+  components: {
+    Pagination
   },
   methods: {
-    ...mapActions(['fetchArticles'])
+    ...mapActions(['fetchArticles']),
+  },
+  computed: {
+    ...mapGetters(['articles'])
   },
   created() {
     this.fetchArticles()
@@ -66,9 +73,8 @@ export default {
 
 <style scoped>
 .app2 {
-  height: 1000px;
-  width: 100rem;
-  /* background-color: #6fafc6 */
+  height: 600px;
+  width: 80rem;
 }
 
 .board table {

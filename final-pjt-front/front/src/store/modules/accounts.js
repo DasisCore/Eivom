@@ -1,8 +1,7 @@
 import router from '@/router'
 import axios from 'axios'
 import drf from '@/api/drf'
-
-
+import _ from 'lodash'
 export default {
   // namespaced: true,
 
@@ -18,6 +17,10 @@ export default {
     isLoggedIn: state => !!state.token,
     currentUser: state => state.currentUser,
     profile: state => state.profile,
+    notMyAccount: (state) => {
+      return state.profile.username !== state.currentUser.username
+    },
+    isFollowing: state => _.includes(state.profile.followers, state.currentUser.pk),
     authError: state => state.authError,
     authHeader: state => ({ Authorization: `Token ${state.token}`})
   },
@@ -26,10 +29,47 @@ export default {
     SET_TOKEN: (state, token) => state.token = token,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
+    SET_PROFILE_IMG: (state, profile_img) => state.profile.profile_img = profile_img,
     SET_AUTH_ERROR: (state, error) => state.authError = error
   },
 
   actions: {
+    updateImg({ commit, getters }, { username, profile_img }) {
+      /* 프로필 사진 수정
+      PUT: comment URL(프로필 사진 입력 정보, token)
+        성공하면
+          응답으로 state.profile의 profile_img 갱신
+        실패하면
+          에러 메시지 표시
+      */
+      const img = { profile_img }
+
+      axios({
+        url: drf.accounts.img(username),
+        method: 'put',
+        data: img,
+        headers: getters.authHeader,
+      })
+        .then(res => {
+          console.log(res.data)
+          commit('SET_PROFILE_IMG', res.data)
+        })
+        .catch(err => console.error(err.response))
+    },
+    followProfile({commit, getters}, username) {
+      axios({
+        url: drf.accounts.follow(username),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+      .then(res=>{
+        console.log(res)
+        commit('SET_PROFILE', res.data)
+      })
+      .catch(err => {
+        console.error(err.response)
+      })
+    },
     saveToken({ commit }, token) {
       /* 
       state.token 추가 

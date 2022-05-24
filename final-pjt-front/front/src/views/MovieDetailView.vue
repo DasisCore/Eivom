@@ -168,7 +168,7 @@ export default {
     margin: 3px auto;
     position: absolute;
     margin-left: 20px;
-    
+
     }
 
 
