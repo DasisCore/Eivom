@@ -14,10 +14,10 @@
           <div class="ms-3">
             <div class="d-flex">
               <div>{{ comment.user.username }}</div>
-              <div class="d-flex" style="margin-left:10px;">
+              <div v-if="currentUser.username == comment.user.username" class="d-flex" style="margin-left:10px;">
                 <button v-if="!isEditing" @click="switchIsEditing">수정</button>
-                <button v-if="isEditing" @click="onUpdate">업데이트</button>
-                <button @click="delete_movie_Comment(payload)">삭제</button>
+                <button v-if="isEditing" @click="onUpdate; add()">업데이트</button>
+                <button @click="delete_movie_Comment(payload); add()">삭제</button>
                 <button v-if="isEditing" @click="switchIsEditing">취소</button>
               </div>
             </div>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'movie_comment_item',
@@ -57,9 +57,11 @@ export default {
         commentPk: this.comment.id,
         content: this.comment.content
       },
+      num: 0,
     }
   },
   computed: {
+    ...mapGetters(['currentUser']),
     counting_star() {
       return `★`.repeat(this.comment.rate)
     },
@@ -75,6 +77,15 @@ export default {
     onUpdate() {
       this.update_movie_Comment(this.payload)
       this.isEditing = false
+    },
+    add(){
+      this.num = this.num + 1
+    }
+  },
+  watch: {
+    "num" () {
+      location.reload()
+      
     },
   }
 }

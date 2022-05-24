@@ -7,13 +7,13 @@
       </div>
       
       <div v-if="isLoggedIn" id="comment_writer">
-        <form @submit.prevent="create_movie_Comment(commentform)">
+        <form @submit.prevent="create_movie_Comment(commentform); add();">
           <div class="d-flex row" style="margin: 10px 10px 10px 10px;">
             <div>
               <div class="d-flex justify-content-between">
                 <div>
                   <div>
-                    <label for="comment_w" id="user">admin</label>
+                    <label for="comment_w" id="user">{{ currentUser.username }}</label>
                   </div>
                 </div>
                 <div class="stars">
@@ -45,6 +45,7 @@
 
 <script>
 import MovieCommentItem from './MovieCommentItem.vue'
+import axios from 'axios'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -62,19 +63,31 @@ export default {
         content: "",
         rate: 0,
       },
-
+      get_comments: {},
+      num: 0,
     }
   },
   methods: {
-    ...mapActions(['create_movie_Comment']),
-    test(){
-      // console.log(this.commentform.rate)
+    ...mapActions(['create_movie_Comment', 'fetchCurrentUser']),
+    add(){
+      this.num++
     },
   },
   computed: {
-    ...mapGetters(['isLoggedIn', "get_comments", 'get_movie']),
+    ...mapGetters(['isLoggedIn', "get_comments", 'get_movie', 'currentUser', ]),
   },
   created() {
+    axios.get("http://localhost:8000/movies/" + this.$route.params.movie_id + "/comments/", {})
+      .then(res => {
+        console.log(res.data)
+        this.get_comments = res.data
+      }),
+    this.fetchCurrentUser()
+  },
+  watch: {
+    "num"() {
+      location.reload()
+    }
   }
 
 }
