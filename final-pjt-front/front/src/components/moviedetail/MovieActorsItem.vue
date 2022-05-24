@@ -3,7 +3,9 @@
     <a :href="search_naver" target="_blank">
       <p class="carousel-text">{{actor.name}}</p>
       <div class="carousel-bg"></div>
-      <img :src="actorImg" alt="actor">
+      <img v-if="actor.profile_path == null" src="@/assets/annonymous.jpg" alt="actor">
+      <img v-else :src="actorImg" alt="actor">
+
     </a>
   </div>
 </template>

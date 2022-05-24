@@ -37,7 +37,7 @@
           <div>
             <div class="search-form">
               <div class="search-box">
-                <input type="text" />
+                <input type="text" @keydown.enter="search_movie_ID(search_movie)" v-model="search_movie"/>
                 <span></span>
               </div>
             </div>
@@ -67,14 +67,19 @@ export default {
   components: {
 
     },
+  data: function() {
+    return {
+      search_movie: "",
+    }
+  },
   computed: {
-    ...mapGetters(['isLoggedIn', 'currentUser'])
+    ...mapGetters(['isLoggedIn', 'currentUser',])
   },
   methods: {
-    ...mapActions(['fetchCurrentUser'])
+    ...mapActions(['fetchCurrentUser', 'search_movie_ID']),
   },
   created() {
-    this.fetchCurrentUser()
+    // this.fetchCurrentUser()
   }
   
 }
@@ -117,13 +122,6 @@ export default {
     color: black !important;
   }
 
-  /* 
-  
-  
-  
-  
-  
-  */
 
   @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 

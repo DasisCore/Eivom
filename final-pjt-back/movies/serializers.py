@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username',)
+        fields = ('username', 'profile_img',)
 
 class MovieListSerializer(serializers.ModelSerializer):
     
@@ -50,18 +50,24 @@ class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = '__all__'
-        fields = ('id', 'content', 'created_at', 'updated_at', 'movie', 'user', 'movie_comment_like' )
+        # fields = '__all__'
+        fields = ('id', 'content', 'created_at', 'updated_at', 'movie', 'user', 'movie_comment_like', "rate" )
 
 
 
 
+# class CommentSerializer(serializers.ModelSerializer):
+#     pass
+
+#     class Meta:
+#         model = Comment
+#         fields = '__all__'
 
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    pass
-
+    
     class Meta:
         model = Comment
         fields = '__all__'
+        read_only_fields = ('user', 'movie', 'created_at', 'updated_at', 'movie_comment_like', )

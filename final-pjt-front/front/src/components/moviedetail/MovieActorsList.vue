@@ -1,22 +1,23 @@
 <template>
-  <div id="owl">
-    <h1 class="fw-bold">배우</h1>
-    <carousel v-if="actors.length > 0"
-    :items="5.5"
-    :loop="true"
-    :margin="30"
-    :nav="false"
-    :dot="true"
-    :responsive="{
-      0: {
-        items: 10
-      },
-      768: {
-        items: 6
-      }
-    }">
-      <movie-actors-item v-for="actor in actors" :key="actor.id" :actor="actor"></movie-actors-item>
-    </carousel>
+  <div>
+    <div id="owl">
+      <carousel v-if="actors.length > 0"
+      :items="5.5"
+      :loop="true"
+      :margin="30"
+      :nav="false"
+      :dot="true"
+      :responsive="{
+        0: {
+          items: 10
+        },
+        768: {
+          items: 6
+        }
+      }">
+        <movie-actors-item v-for="actor in actors" :key="actor.id" :actor="actor"></movie-actors-item>
+      </carousel>
+    </div>
   </div>
 </template>
 
@@ -35,7 +36,7 @@ const API_KEY = process.env.VUE_APP_TMDB_API_KEY
       carousel
     },
     props: {
-      movieID: Number,
+      movie: String,
     },
     data: function() {
       return {
@@ -46,7 +47,7 @@ const API_KEY = process.env.VUE_APP_TMDB_API_KEY
 
     },
     created() {
-      axios.get(URL + this.movieID + "/credits", {
+      axios.get(URL + this.movie + "/credits", {
         params: {
           api_key: API_KEY,
         }
@@ -66,27 +67,10 @@ const API_KEY = process.env.VUE_APP_TMDB_API_KEY
 </script>
 
 <style scoped>
-  /* .carousel {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .carousel-text {
-    position: absolute;
-    bottom: 0;
-    margin-left: 20px;
-    z-index: 551;
-    color: #ffffff;
-  }
-  .carousel-bg {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    height: 100%;
-    background: linear-gradient(transparent, #000000);
-    opacity: 0.8;
-    z-index: 550;
-  } */
 
+  #owl {
+      margin: 30px;
+      margin-top: 40px;
+  }
 
 </style>

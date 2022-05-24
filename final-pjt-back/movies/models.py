@@ -20,13 +20,13 @@ class Movie (models.Model):
 
 
 class Comment(models.Model):
-    movie = models.ForeignKey(Movie, related_name="comments_movie", on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, related_name="comments", on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
-    rate = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])
-    movie_comment_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_movie_comments")
+    rate = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], blank=True, null=True)
+    movie_comment_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="like_movie_comments", blank=True)
 
 
     # def __str__(self):

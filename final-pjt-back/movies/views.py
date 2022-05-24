@@ -91,9 +91,10 @@ def comment_list_or_create(request, movie_pk):
         return Response(serialiezers.data)
 
     def create_comment():
-        serializer = CommentListSerializer(data=request.data)
+        movie = get_object_or_404(Movie, movie_id=movie_pk)
+        serializer = CommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(user=request.user)
+            serializer.save(user=request.user, movie=movie)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     if request.method == "GET":

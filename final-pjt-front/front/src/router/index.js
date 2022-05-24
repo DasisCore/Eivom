@@ -17,10 +17,6 @@ import NotFound404 from '../views/NotFound404.vue'
 // 임시 영화 상세 페이지 라우터
 import MovieDetailView from '../views/MovieDetailView.vue'
 
-// 중첩 라우터
-import SimilarMovieList from '../components/moviedetail/SimilarMovieList.vue'
-import MovieActorsList from '../components/moviedetail/MovieActorsList.vue'
-
 
 Vue.use(VueRouter)
 
@@ -84,27 +80,10 @@ const routes = [
     path: '*',
     redirect: '/404'
   },
-
-  // 임시로 만든 영화 상세 페이지 라우터
   {
-    path: '/moviedetail',
+    path: '/moviedetail/:movie_id',
     name: 'moviedetail',
     component: MovieDetailView,
-    children: [
-      {
-        path: '/moviedetail',
-        name: 'movieactors',
-        component: MovieActorsList,
-        props: true
-      },
-      {
-        path: '/moviedetail/similarmovies',
-        name: 'similarmovies',
-        component: SimilarMovieList,
-        props: true
-      },
-    ],
-    props: true,
   },
 
 

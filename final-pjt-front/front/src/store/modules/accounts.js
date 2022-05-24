@@ -55,7 +55,7 @@ export default {
           응답 토큰 저장
           현재 사용자 정보 받기
           메인 페이지(ArticleListView)로 이동
-        실패하면
+          실패하면
           에러 메시지 표시
       */
       axios({

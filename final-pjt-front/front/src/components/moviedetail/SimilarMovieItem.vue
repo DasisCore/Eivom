@@ -1,12 +1,19 @@
 <template>
   <div>
     <div class="movie-card" :style="`background: url('https://image.tmdb.org/t/p/w500/${backdrop_path}');`">
-      <h1>{{ title }}</h1>
-      <span>{{ original_title }}</span>
-      <i class="fas fa-star"></i>
-      <span>{{ vote_average }}</span>
+      <div class="title_part">
+        <h1>{{ title }}</h1>
+        <span>{{ original_title }}</span>
+          <span>
+            {{ vote_average }}
+            <i class="fas fa-star"></i>
+          </span>
+      </div>
       <p>{{ overview }}</p>
-      <button class="watch">watch movie</button>
+      <div class="d-flex justify-content-between">
+        <button class="watch m-1" @click="reload">다른 영화 보기</button>
+        <button class="watch m-1">상세보기</button>
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +29,7 @@ const API_KEY = process.env.VUE_APP_TMDB_API_KEY
 export default {
   name: "similar_movie_item",
   props: {
-    movieID: Number
+    movie: Number,
   },
   data: function() {
     return {
@@ -34,11 +41,34 @@ export default {
       release_data: "",
     }
   },
+  methods: {
+    reload() {
+      const random_num = _.random(0, 15)
+      console.log(random_num)
+      axios.get(URL + this.movie + "/similar", {
+        params: {
+          api_key: API_KEY,
+          language: 'ko-KR',
+        }
+      })
+        .then(res => {
+          const movie = res.data.results[random_num]
+          this.title = movie.title
+          this.original_title = movie.original_title
+          this.overview = movie.overview.slice(0, 120) + "...."
+          this.release_data = movie.release_data
+          this.backdrop_path = movie.backdrop_path
+          this.vote_average = movie.vote_average.slice(0, 3)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+  },
   mounted() {
-    console.log(123)
     const random_num = _.random(0, 10)
     console.log(random_num)
-    axios.get(URL + this.movieID + "/similar", {
+    axios.get(URL + this.movie + "/similar", {
       params: {
         api_key: API_KEY,
         language: 'ko-KR',
@@ -61,8 +91,15 @@ export default {
 </script>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css?family=Raleway:100,400');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
+  /* body {
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-weight: 500;
+    background: black;
+  } */
+
+  /* 영화 카드 */
   .movie-card {
     position: relative;
     box-sizing: border-box;
@@ -76,8 +113,12 @@ export default {
     box-shadow: 2px 3px 12px rgba(0, 0, 0, .4);
     color: white;
     padding: 2vh 3%;
-    z-index: -10;
+    z-index: 10;
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-weight: 300;
   }
+
+  /* 영화 카드 어둡게 */
   .movie-card:after{
     content: "";
     display: block;
@@ -90,31 +131,47 @@ export default {
     background: linear-gradient(to right, rgba(40,40,60,1) 0%,rgba(40,0,60,0) 90%);
     background-blend-mode: multiply;
     will-change: transform;
-    z-index: -1 ;
-    overflow: ;
+    z-index: 0 ;
   }
+
+
+  /* 제목, 소제목 부분  */
+  .title_part {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+
+  /* 평점 별모양 아이콘 */
   i {
     font-size: .7em;
     color: #ff5b84;
   }
+
+  /* 제목 / title */
   h1 {
     font-size: 170%;
     position: relative;
     z-index: 10;
+    margin-bottom: 0px;
   }
+
+  /* 영어 title */
   span {
     display: inline-block;
     position: relative;
+    font-size: 80%;
     z-index: 10;
     margin-right: 80px;
+    margin-left: 5px;
     color: rgb(210, 210, 210);
   }
+
   .watch {
     display: block;
     border: 1px solid white;
     border-radius: 4px;
     position: relative;
-    z-index: 10;
+    z-index: 30;
     color: white;
     padding: 10px;
     text-align: center;
@@ -126,12 +183,16 @@ export default {
   }
 
   button {
+    position: relative;
     z-index: 30;
-    cursor: pointer !important;
+    cursor: pointer;
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-weight: 500;
+    background: rgba(255, 255, 255, .8);
   }
 
   button:hover {
-    background: rgba(255, 255, 255, .8);
+    background: rgba(191, 191, 191, 0.8);
     color: black;
     box-shadow: 0 0 10px rgba(255,255,255,.5);
     mix-blend-mode: screen;
@@ -140,6 +201,7 @@ export default {
   button:active {
     transform: translateY(2px);
   }
+
   p {
     position: relative;
     z-index: 10;
@@ -150,7 +212,7 @@ export default {
 
   @media (max-width: 768px) {
     body {
-  /*     background: none; */
+      background: none;
     }
     .movie-card {
       width: 75%;
@@ -161,9 +223,9 @@ export default {
     }
     p {
       display: none;
-  /*     overflow: hidden;
+      overflow: hidden;
       width: 100%;
-      height: 30%; */
+      height: 30%;
     }
     .watch {
       margin: 5% auto;

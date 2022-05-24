@@ -1,6 +1,5 @@
 <template>
   <div>
-    MovieDetailView
     <div class="container-lg">
       <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="container text-end">
@@ -10,15 +9,16 @@
           </div>
         </div>
       </div>
+    </div>
       <div class="container-fluid parallax bg-img1"
-      :style="`background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('https://image.tmdb.org/t/p/original/${ backdrop_path }');`">
+      :style="`background: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.15)), url('https://image.tmdb.org/t/p/original/${ backdrop_path }');`">
         <div class="heading text-center">
           <!-- <h2>{{restAPI.release_date}}</h2> -->
-          <h2 class="text-uppercase">{{title}}</h2>
+          <!-- <h2 class="text-uppercase poster_title">{{title}}</h2> -->
         </div>
       </div>
-
-      <div class="container-fluid py-5 bg-faded" id="hm">
+    <div class="container-lg">
+      <div class="container-fluid py-5 bg-faded" id="info">
         <div class="container-xxl d-flex justify-content-end">
           <div>
             <div class="d-flex justify-content-end">
@@ -48,16 +48,14 @@
         
 
         <div id="menu" class="d-flex" >
-          <div id="actors" class="long_menu" @click="click_actor" >배우 목록</div>
-          &nbsp;|&nbsp;
-          <div id="s_movie" class="long_menu" @click="click_s_movie" >비슷한 영화</div>
+          <div id="actors" class="long_menu ms-5 me-5 active" @click="click_actor" >배우들 목록</div>
+          <div id="s_movie" class="long_menu ms-5 me-5" @click="click_s_movie" >비슷한 영화</div>
         </div>
-        <hr>
-        <movie-actors-list :movieID="movieID" v-if="menubar"></movie-actors-list>
-        <similar-movie-item v-if="menubar === false" :movieID="movieID"></similar-movie-item>
+        <movie-actors-list :movie="movie" v-if="menubar"></movie-actors-list>
+        <similar-movie-item v-if="menubar === false" :movie="movie"></similar-movie-item>
       </div>
       <hr>
-      <movie-comment-list></movie-comment-list>
+      <movie-comment-list :movie_id="movie"></movie-comment-list>
 
 
     </div>
@@ -68,6 +66,7 @@
 import MovieCommentList from '../components/moviedetail/MovieCommentList.vue'
 import MovieActorsList from '../components/moviedetail/MovieActorsList.vue'
 import SimilarMovieItem from '../components/moviedetail/SimilarMovieItem.vue'
+import { mapGetters } from "vuex"
 
 import axios from "axios"
 // import _ from "lodash"
@@ -78,12 +77,11 @@ const API_KEY = process.env.VUE_APP_TMDB_API_KEY
 
 export default {
   name: 'MovieDetailView',
-  // props: {
-  //   movieID: Number,
-  // },
   data: function(){
     return {
-      movieID: 453395,
+      // get_movieID: "",
+      movie: this.$route.params.movie_id,
+      // movie: this.get_movie,
       title: '',
       original_title: '',
       backdrop_path: '',
@@ -94,6 +92,9 @@ export default {
       overview: '',
       menubar: true,
     }
+  },
+  computed: {
+    ...mapGetters(['get_movie']),
   },
   methods: {
     click_actor: function() {
@@ -119,7 +120,8 @@ export default {
     MovieCommentList, MovieActorsList, SimilarMovieItem
   },
   created() {
-    axios.get(URL + this.movieID, {
+    // console.log(this.get_movie)
+    axios.get(URL + this.movie, {
       params: {
         api_key: API_KEY,
         language: 'ko-KR',
@@ -141,15 +143,30 @@ export default {
       // console.log(res.data)
       })
       .catch(err => console.log(err))
-
   }
 }
 </script>
 
 <style scoped>
 
-  .active {
-    color: crimson !important;
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+  #menu {
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 15px;
+    border-bottom: 1.5px solid #bcbcbc;
+  }
+
+  .active:after {
+    padding-right: 15px;
+    content: "";
+    display: block;
+    border-bottom: 2px solid #000000;
+    width: 100px;
+    position: absolute;
+    margin: 14.5px auto;
   }
 
   #actors {
@@ -160,17 +177,12 @@ export default {
     cursor: pointer;
   }
 
-  .long_menu:hover:after {
-    content: "";
-    display: block;
-    width: 40px;
-    border-bottom: 2px solid #bcbcbc;
-    margin: 3px auto;
-    position: absolute;
-    margin-left: 20px;
-    
-    }
-
+  #info {
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-size: 22vm;
+    font-weight: 500;
+    color: #6c757d;
+  }
 
   .loading {
     margin-top: 3.5rem;
@@ -184,24 +196,40 @@ export default {
     transition: opacity 1s;
   }
 
-  @import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Open+Sans:300,400');
-
   body, html {
     height: 100%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Noto Sans KR',  sans-serif;
     font-size: 14px;
   }
 
   h1 {
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Noto Sans KR',  sans-serif;
     font-size: 4.5rem;
     letter-spacing: 0.5rem;
   }
 
   h2 {
-    font-family: 'Julius Sans One', sans-serif;
-    font-size: 2.5rem;
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
     letter-spacing: 0.5rem;
+    color: black;
+  }
+
+  h3 {
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    /* letter-spacing: 0.2rem; */
+    color: #d6d6d6;
+  }
+
+  .poster_title {
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    /* letter-spacing: 0.2rem; */
+    color: #d6d6d6;
   }
 
   p {
@@ -244,7 +272,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover !important;
     /* background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.3)), url('https://wallpapercave.com/wp/wp1906348.png'); */
-    height: 800px;
+    height: 900px;
   }
 
   .bg-img2 {
