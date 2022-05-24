@@ -177,14 +177,12 @@ export default {
     cursor: pointer;
   }
 
-<<<<<<< HEAD
   #info {
     font-family: 'Noto Sans KR',  sans-serif;
     font-size: 22vm;
     font-weight: 500;
     color: #6c757d;
   }
-=======
   .long_menu:hover:after {
     content: "";
     display: block;
@@ -196,7 +194,6 @@ export default {
 
     }
 
->>>>>>> a81dd9fcdd17b7afee6c4dd2178f6f365d95fa5a
 
   .loading {
     margin-top: 3.5rem;
