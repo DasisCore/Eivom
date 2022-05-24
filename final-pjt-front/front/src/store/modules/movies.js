@@ -13,6 +13,7 @@ export default{
     // token: "",
     movie_data: {},
     movie: localStorage.getItem('movie') || {},
+    // movie: {},
     comments: {},
   },
   getters: {
@@ -35,6 +36,7 @@ export default{
       })
         .then(res => {
           console.log(res.data.movie_id)
+          localStorage.setItem('movie', res.data.movie_id)
           commit("SET_MOVIE_ID", movie_id)
 
             axios({ 
@@ -42,10 +44,16 @@ export default{
               method: 'get',
             })
               .then(res => {
-                console.log("중첩 axios")
+                console.log(res.data)
                 commit("SET_COMMENT", res.data)
               })
-              .catch(err => console.error(err))
+              .catch(err => {
+                // console.log("ehck")
+                if (err.response.status === 404) {
+                  commit("SET_MOVIES_COMMENT", {})
+                  router.push({ name: 'moviedetail', params: { movie_id: movie_id }})
+                }
+              })
 
           router.push({ name: 'moviedetail', params: { movie_id: movie_id }}).catch(err => err)
           // router.go()
