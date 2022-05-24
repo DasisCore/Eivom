@@ -4,7 +4,6 @@ const ACCOUNTS = 'accounts/'
 const ARTICLES = 'articles/'
 const MOVIES = 'movies/'
 const COMMENTS = 'comments/'
-
 export default {
   accounts: {
     login: () => HOST + ACCOUNTS + 'login/',
@@ -14,6 +13,8 @@ export default {
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     // username으로 프로필 제공
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
+    follow: username => HOST + ACCOUNTS + 'follow/' + `${username}/`,
+    img: username => HOST + ACCOUNTS + 'upload_img/' + `${username}/`,
   },
   articles: {
     // /articles/

@@ -3,7 +3,7 @@
     
     
     <profile-item></profile-item>
-    <profile-movie-list></profile-movie-list>
+    <profile-movie-list :likeMovies="profile.like_movies"></profile-movie-list>
     <profile-comment-list></profile-comment-list>
   </div>
 </template>

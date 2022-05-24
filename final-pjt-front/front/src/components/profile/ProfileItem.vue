@@ -2,13 +2,35 @@
   <div class="app9">
     <div class="p-5">
       <div class="d-flex justify-content-center">
-        <img :src="profile.profile_img" alt="profile_img">
+        <div class="d-flex flex-column">
+          <img :src="profile.profile_img" alt="profile_img">
+          {{ isEditing }}
+          <!-- <span v-if="!isEditing">1234</span> -->
+          <!-- {{ isEditing }} -->
+          <!-- <input type="text" v-model="payloads.img"> -->
+          <span v-if="isEditing">
+            <input type="text">
+            <button @click="onUpdate">Update</button> |
+            <button @click="switchIsEditing">Cancle</button>
+          </span>
+          <span v-if="profile.username === currentUser.username && !isEditing">
+            <button @click="switchIsEditing">Edit</button> |
+          </span>
+        </div>
         <div class="d-flex flex-column justify-content-center align-items-center">
-          <h1>Hi, {{ profile.username }}</h1>
+          <div class="d-flex">
+            <h1>{{ profile.username }}'s profile</h1>
+            <button @click="followProfile(username)" v-if="notMyAccount && isFollowing">언팔로우</button>
+            <button @click="followProfile(username)" v-if="notMyAccount && !isFollowing">팔로우</button>
+
+            <!-- 본인 프로필이면 팔로우 버튼 x
+            팔로우 상태면 언팔로우버튼
+            언팔로우 상태면 팔로우버튼 -->
+          </div>
           <div>
-            <span>{{ profile.like_movies.length }} movie |</span>
-            <span>{{ profile.followers.length }} followers |</span>
-            <span>{{ profile.followings.length }} followings</span>
+            <span>{{ likeCount }} movie |</span>
+            <span>{{ followersCount }} followers |</span>
+            <span>{{ followingsCount }} followings</span>
           </div>
         </div>
       </div>
@@ -21,15 +43,42 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'profile_item',
   computed: {
-      ...mapGetters(['profile'])
+      ...mapGetters(['profile', 'notMyAccount', 'isFollowing', 'currentUser']),
+      likeCount() {
+        return this.profile.like_movies?.length
+      },
+      followersCount() {
+        return this.profile.followers?.length
+      },
+      followingsCount() {
+        return this.profile.followings?.length
+      },
     },
-    methods: {
-      ...mapActions(['fetchProfile'])
+    
+  data() {
+    return {
+      username: this.$route.params.username,
+      isEditing: false,
+      // payloads: {
+      //   username: this.profile.username,
+      //   img: this.profile.profile_img,
+      // },
+    }
+  },
+  methods: {
+    ...mapActions(['fetchProfile', 'followProfile', 'updateImg']),
+    switchIsEditing() {
+      this.isEditing = !this.isEditing
     },
-    created() {
-      const payload = { username: this.$route.params.username }
-      this.fetchProfile(payload)
-    },
+    onUpdate() {
+      this.updateImg(this.payloads)
+      this.isEditing = false
+    }
+  },
+  created() {
+    const payload = { username: this.$route.params.username }
+    this.fetchProfile(payload)
+  },
 }
 </script>
 
