@@ -127,9 +127,44 @@
       </ul>
     </section>
 
-    <div style="height: 500px">
-      <h1 class="text-center"> 결과창 </h1>
-    </div>
+    <div v-if="title" class="container justify-content-center">
+      <div class="movie-card">
+          <div class="poster-wrapper">
+            <div class="poster">
+              <img v-if="poster_path" :src="`https://image.tmdb.org/t/p/original/${ poster_path }`" alt="poster" />
+              <img v-else src="@/assets/Eivom_poster.jpg" alt="poster" />
+            </div>
+          </div>
+          <!-- end poster-wrapper -->
+          <div class="movie-info">
+            <div class="header-section">
+              <h2>{{ title }}</h2>
+              <p>{{ original_title }}</p>
+              <div class="extra">
+                <div class="ratings"><p>	&#9733; {{ vote_average }}</p></div>
+              </div>
+            </div>
+
+            <div class="synopsis-section">
+              <h3>SYNOPSIS</h3>
+              <p>
+                {{ overview }}
+              </p>
+            </div>
+            <div class="gallery-section">
+              <h3>VIDEO / PICTURE</h3>
+              <div class="gallery">
+                <div class="small" v-if="backdrop1"><img :src="`https://image.tmdb.org/t/p/original/${ backdrop1 }`" alt="media" /></div>
+                <div class="small" v-else><img src="@/assets/back1.jpg" alt="media" /></div>
+                <div class="medium" v-if="backdrop2"><img :src="`https://image.tmdb.org/t/p/original/${ backdrop2 }`" alt="media" /></div>
+                <div class="small" v-else><img src="@/assets/back1.jpg" alt="media" /></div>
+                <div class="small" v-if="backdrop3"><img :src="`https://image.tmdb.org/t/p/original/${ backdrop3 }`" alt="media" /></div>
+                <div class="small" v-else><img src="@/assets/back1.jpg" alt="media" /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     
   </div>
 </template>
@@ -155,6 +190,18 @@ export default {
       sort_by: "",
       include_adult: false,
       vote_average_gte: 5,
+
+      title: "",
+      original_title: "",
+      poster_path: "",
+      vote_average: "",
+      overview: "",
+
+      movie_id: "",
+      backdrop1: "",
+      backdrop2: "",
+      backdrop3: "",
+
     }
   },
   methods: {
@@ -169,7 +216,7 @@ export default {
         without_genre += this.without_genres[i] + ", " 
       }
 
-      const random_num = _.random(1, 10)
+      const random_num = _.random(1, 20)
 
       axios.get(URL, {
         params: {
@@ -184,12 +231,38 @@ export default {
         }
       })
         .then(res => {
-          console.log(res.data.results[random_num])
+          const movie = res.data.results[random_num]
+          if (movie.poster_path === "") {
+            this.submission()
+          } else {
+            this.title = movie.title
+            this.original_title = movie.original_title
+            this.poster_path = movie.poster_path
+            this.vote_average = movie.vote_average
+            this.overview = movie.overview
+            this.movie_id = movie.id
+
+            axios.get("https://api.themoviedb.org/3/movie/" + this.movie_id + "/images", {
+            params: {
+              api_key: API_KEY,
+            }
+          })
+            .then(res => {
+              this.backdrop1 = res.data.backdrops[0].file_path
+              this.backdrop2 = res.data.backdrops[1].file_path
+              this.backdrop3 = res.data.backdrops[2].file_path
+            })
+            .catch(err => {
+              console.error(err)
+            })
+          }
         })
         .catch(err => {
           console.error(err)
         })
-    }
+      
+
+    },
   },
   mounted() {
     var items = document.querySelectorAll(".timeline li");
@@ -217,6 +290,7 @@ export default {
     window.addEventListener("load", callbackFunc);
     window.addEventListener("resize", callbackFunc);
     window.addEventListener("scroll", callbackFunc);
+
   }
 }
 </script>
@@ -229,14 +303,6 @@ export default {
     font-size: 10px;
   }
 
-
-  *,
-  *::before,
-  *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
 
   /* TIMELINE
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -335,7 +401,7 @@ export default {
   .timeline ul li div {
     visibility: hidden;
     opacity: 0;
-    /* transition: all 0.5s ease-in-out; */
+    transition: all 0.5s ease-in-out;
   }
 
   .timeline ul li:nth-child(odd) div {
@@ -443,4 +509,191 @@ export default {
     }
   }
 
+
+/* --------------------------------------------------------- */
+/* movie card */
+
+  @import url("https://fonts.googleapis.com/css?family=Lato");
+  /*-- Variables --*/
+  /*---- Global ----*/
+  .movie-card {
+    background-color: rgb(245, 245, 245);
+    margin: 20px;
+    padding: 100px;
+    border: 0;
+    border-radius: 20px;
+    outline: 0;
+    font-family: "Lato", sans-serif;
+    font-size: 100%;
+    vertical-align: bottom;
+    text-decoration: none;
+    box-sizing: border-box;
+    box-shadow: 5px 5px 5px rgb(209, 209, 209);
+
+  }
+  p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    color: #020518;
+  }
+
+  h2 {
+    color: #020518;
+  }
+
+  h3 {
+    color: #020518;
+  }
+
+  h4 {
+    color: #020518;
+  }
+
+  h5 {
+    color: #020518;
+  }
+
+  h6 {
+    color: #020518;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  h3 {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  /*movie-card*/
+  .movie-card {
+    display: grid;
+    grid-template-columns: 2fr 400px 0.5fr 400px 2fr;
+    grid-template-areas: ". p . m .";
+  }
+  @media screen and (max-width: 1024px) {
+    .movie-card {
+      grid-template-columns: 1fr 4fr 1fr 4fr 1fr;
+    }
+  }
+  @media screen and (max-width: 780px) {
+    .movie-card {
+      grid-template-columns: 1fr 4fr 1fr;
+      grid-template-areas: ". p ." ". m .";
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .movie-card {
+      grid-template-columns: 0.5fr 4fr 0.5fr;
+      grid-template-areas: ". p ." ". m .";
+    }
+  }
+  .movie-card .poster-wrapper {
+    grid-area: p;
+  }
+  .movie-card .poster-wrapper .poster {
+    position: relative;
+    color: #fff;
+  }
+  @media screen and (max-width: 500px) {
+    .movie-card .poster-wrapper .poster {
+      margin-bottom: 30px;
+    }
+  }
+  .movie-card .poster-wrapper .poster .release-date {
+    position: absolute;
+    top: 30px;
+    left: -30px;
+    background-color: #3686ff;
+    padding: 10px;
+    text-align: center;
+  }
+  .movie-card .poster-wrapper .poster .release-date h2 {
+    font-size: 42px;
+    color: #fff;
+  }
+  .movie-card .poster-wrapper .poster .release-date .divider {
+    background-color: #fff;
+    height: 2px;
+    width: 20px;
+    margin: 10px auto;
+  }
+  .movie-card .poster-wrapper .poster .btn-play {
+    position: absolute;
+    bottom: 30px;
+    right: -30px;
+    background-color: #3686ff;
+    padding: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.4s;
+  }
+  .movie-card .poster-wrapper .poster .btn-play:hover {
+    background-color: #fdba2e;
+  }
+  .movie-card .movie-info {
+    grid-area: m;
+  }
+  .movie-card .movie-info > div {
+    margin-bottom: 30px;
+  }
+  .movie-card .movie-info .header-section p {
+    margin: 5px 0;
+  }
+  .movie-card .movie-info .header-section .extra {
+    display: flex;
+    align-items: center;
+  }
+  @media screen and (max-width: 500px) {
+    .movie-card .movie-info .header-section .extra {
+      display: block;
+    }
+  }
+  .movie-card .movie-info .header-section .extra .ratings {
+    margin-right: 50px;
+    color: #fdba2e;
+  }
+  .movie-card .movie-info .header-section .extra .ratings p {
+    font-size: 18px;
+  }
+  .movie-card .movie-info .header-section .extra .channels > span {
+    margin-right: 5px;
+  }
+  .movie-card .movie-info .cast-section .casts {
+    display: flex;
+  }
+  .movie-card .movie-info .cast-section .casts img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  .movie-card .movie-info .gallery-section .gallery {
+    display: grid;
+    grid-template-columns: repeat(autofit, minmax(50px, 1fr));
+    grid-auto-rows: 75px;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    grid-auto-flow: dense;
+  }
+  .movie-card .movie-info .gallery-section .gallery .small {
+    grid-column: span 1;
+  }
+  .movie-card .movie-info .gallery-section .gallery .medium {
+    grid-column: span 3;
+  }
+  .movie-card .movie-info .gallery-section .gallery img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 </style>
