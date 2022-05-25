@@ -1,17 +1,17 @@
 <template>
   <div class="col-3 movie">
-    <!-- <img :src="`https://image.tmdb.org/t/p/original${poster_path}`" alt="">
-    <h4>{{ title }}</h4> -->
-    <div class="containers">
-      <img :src="`https://image.tmdb.org/t/p/original${poster_path}`" alt="">
-      <div class="overlay">
-        <div class = "items"></div>
-        <div class = "items head">
-          <p>{{ title }}</p>
-          <hr>
+    <a :href="`http://localhost:8080/moviedetail/${ movie_id }`">
+      <div class="containers" :style="`background: url('https://image.tmdb.org/t/p/original${poster_path}')`">
+        <!-- <img :src="`https://image.tmdb.org/t/p/original${poster_path}`" alt=""> -->
+        <div class="overlay">
+          <div class = "items"></div>
+          <div class = "items head">
+            <p>{{ title }}</p>
+            <hr>
+          </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ export default {
     return {
       title: '',
       poster_path: '',
+      movie_id: '',
     }
   },
   created() {
@@ -41,6 +42,7 @@ export default {
       .then(res => {
       this.title = res.data.title
       this.poster_path = res.data.poster_path
+      this.movie_id = res.data.id
       // console.log(res.data)
       })
       .catch(err => console.log(err))
@@ -49,26 +51,39 @@ export default {
 </script>
 
 <style scoped>
+
   .movie {
     margin-bottom: 30px;
   }
+
   img {
     width: 300px;
     height: 450px;
     position: absolute;
     border-radius: 9px;
   }
+
   h4 {
     text-align: center;
   }
+
   body {
   background-color: #FEF5DF;
-}
+  }
 
+  p {
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-size: 1.5rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
 .containers {
+  background-repeat: no-repeat;
+  background-size: cover !important;
   width: 300px;
   height: 450px;
-  background: url("https://image.tmdb.org/t/p/original${poster_path}");
   top: 0;
   right: 0;
   left: 0;
@@ -87,11 +102,12 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr 2fr 1fr;
-  background: rgba(77, 77, 77, 0.9);
-  color: #FEF5DF;
+  background: rgba(53, 53, 53, 0.505);
+  color: #ffffff;
   opacity: 0;
   transition: all 1.0s;
-  font-family: "Playfair Display", serif;
+  font-family: 'Noto Sans KR',  sans-serif;
+  font-weight: 500;
   border-radius: 9px;
 }
 
@@ -107,18 +123,17 @@ export default {
   transition: all 0.7s;
 }
 
-/* .head hr {
+.head hr {
   display: block;
   width: 0;
   border: none;
   border-bottom: solid 2px #FEF5DF;
   position: absolute;
-  bottom: 0;
   left: 20px;
   transition: all 0.5s;
-} */
+}
 
-/* .price {
+.price {
   font-size: 22px;
   line-height: 10px;
   font-weight: bold;
@@ -144,7 +159,7 @@ export default {
 }
 .cart span {
   margin-left: 10px;
-} */
+}
 
 .containers:hover .overlay {
   opacity: 1;
@@ -156,7 +171,7 @@ export default {
   width: 75px;
   transition-delay: 0.4s;
 }
-/* .containers:hover .overlay .price {
+.containers:hover .overlay .price {
   transform: translateY(0px);
   transition-delay: 0.3s;
   opacity: 1;
@@ -165,5 +180,5 @@ export default {
   transform: translateY(0px);
   transition-delay: 0.6s;
   opacity: 1;
-} */
+}
 </style>
