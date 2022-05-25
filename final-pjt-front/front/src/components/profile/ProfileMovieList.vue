@@ -1,7 +1,6 @@
 <template>
   <div class="app10 container">
-    profile Movie Item
-    <div class="d-flex justify-content-around row">
+    <div class="d-flex row">
       <profile-movie-item v-for="movie in likeMovies"
       :movie="movie"
       :key="movie.id"></profile-movie-item>
@@ -24,8 +23,5 @@ export default {
 </script>
 
 <style>
-  .app10 {
-    height: 65rem;
-    background-color:	#c9bbc8;
-  }
+
 </style>

@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
   .app8 {
-  height: 220rem;
-  background-color: #9aa7d0
+  /* height: 220rem;
+  background-color: #9aa7d0 */
   }
 </style>

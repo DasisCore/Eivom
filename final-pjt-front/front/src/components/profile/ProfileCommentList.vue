@@ -1,6 +1,5 @@
 <template>
-  <div class="app12">
-    profile comment list
+  <div>
     <ul>
       <!-- <profile-comment-list-item 
         v-for="comment in comments" 

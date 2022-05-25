@@ -3,7 +3,8 @@
     <div class="p-5">
       <div class="d-flex justify-content-center">
         <div class="d-flex flex-column">
-          <img :src="profile.profile_img" alt="profile_img">
+          <img v-if="profile.profile_img" :src="profile.profile_img">
+          <img v-else class="profile" src="@/assets/default_profile.jpg">
           <router-link 
           :to="{ name: 'profileImg' }">
             <button>프로필 사진 변경</button>
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'profile_item',
@@ -64,9 +66,17 @@ export default {
 </script>
 
 <style scoped>
+@import 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap';
+  * {
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-weight: 500;
+  }
   .app9 {
-    background-color: #b6b4c2;
-    height: 25rem;
-
+    /* background-color: #b6b4c2;
+    height: 25rem; */
+  }
+  img {
+    border-radius: 70%;
+    margin-right: 15px;
   }
 </style>
