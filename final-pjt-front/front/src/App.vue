@@ -79,7 +79,7 @@ export default {
     ...mapActions(['fetchCurrentUser', 'search_movie_ID']),
   },
   created() {
-    // this.fetchCurrentUser()
+    this.fetchCurrentUser()
   }
   
 }

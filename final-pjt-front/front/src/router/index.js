@@ -9,6 +9,7 @@ import ArticleDetailView from '../views/ArticleDetailView.vue'
 import ArticleEditView from '../views/ArticleEditView.vue'
 import ArticleNewView from '../views/ArticleNewView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import ProfileImgChange from '../views/ProfileImgChange.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import SignUpView from '../views/SignUpView.vue'
@@ -55,6 +56,11 @@ const routes = [
     path: '/profile/:username',
     name: 'profile',
     component: ProfileView
+  },
+  {
+    path: '/profile/img',
+    name: 'profileImg',
+    component: ProfileImgChange
   },
   {
     path: '/login',

@@ -1,7 +1,7 @@
 import router from '@/router';
 import axios from 'axios'
 import drf from '@/api/drf'
-
+import _ from 'lodash'
 const URL = "https://api.themoviedb.org/3/search/movie"
 const API_KEY = process.env.VUE_APP_TMDB_API_KEY
 
@@ -15,13 +15,17 @@ export default{
     movie: localStorage.getItem('movie') || {},
     // movie: {},
     comments: {},
+    currentUser: {},
   },
   getters: {
+    currentUser: state => state.currentUser,
+    get_movie_data: state => state.movie_data,
     get_movie: state => state.movie,
     get_comments: state => state.comments,
-
+    isLiking: state => _.includes(state.movie_data.like_user, state.currentUser.pk),
   },
   mutations:{
+    SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_MOVIE_DATA: (state, movie) => state.movie_data = movie,
     SET_MOVIE_ID: (state, movie) => state.movie = movie,
     SET_COMMENT: (state, comments) => state.comments = comments,
@@ -38,7 +42,7 @@ export default{
           console.log(res.data.movie_id)
           localStorage.setItem('movie', res.data.movie_id)
           commit("SET_MOVIE_ID", movie_id)
-
+          commit('SET_MOVIE_DATA', res.data)
             axios({ 
               url: "http://localhost:8000/movies/" + res.data.movie_id + '/comments/',
               method: 'get',
@@ -46,6 +50,7 @@ export default{
               .then(res => {
                 console.log(res.data)
                 commit("SET_COMMENT", res.data)
+                
               })
               .catch(err => {
                 // console.log("ehck")
@@ -152,6 +157,22 @@ export default{
           .then(res => {
             commit('SET_MOVIES_COMMENT', res.data)
           })
+          .catch(err => console.error(err.response))
+      },
+      likeMovie({ commit, getters }, moviePk) {
+        /* 좋아요
+        POST: likeMovie URL(token)
+          성공하면
+            state.article 갱신
+          실패하면
+            에러 메시지 표시
+        */
+        axios({
+          url: drf.movies.likeMovie(moviePk),
+          method: 'post',
+          headers: getters.authHeader,
+        })
+          .then(res => commit('SET_MOVIE_DATA', res.data))
           .catch(err => console.error(err.response))
       },
   },

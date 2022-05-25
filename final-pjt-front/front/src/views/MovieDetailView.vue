@@ -47,9 +47,18 @@
       <div>
         
 
-        <div id="menu" class="d-flex" >
-          <div id="actors" class="long_menu ms-5 me-5 active" @click="click_actor" >배우들 목록</div>
-          <div id="s_movie" class="long_menu ms-5 me-5" @click="click_s_movie" >비슷한 영화</div>
+        <div id="menu" class="d-flex justify-content-between" >
+          <div class="d-flex">
+            <div id="actors" class="long_menu ms-5 me-5 active" @click="click_actor" >배우들 목록</div>
+            <div id="s_movie" class="long_menu ms-5 me-5" @click="click_s_movie" >비슷한 영화</div>
+          </div>
+          <div>
+            <button @click="likeMovie(moviePk)" v-if="isLiking">이 영화 찜 취소</button>
+            <button @click="likeMovie(moviePk)" v-else>이 영화 찜하기</button>
+            <!-- <button @click="likeMovie(moviePk)">이 영화 찜하기</button> -->
+
+            
+          </div>
         </div>
         <movie-actors-list :movie="movie" v-if="menubar"></movie-actors-list>
         <similar-movie-item v-if="menubar === false" :movie="movie"></similar-movie-item>
@@ -66,7 +75,7 @@
 import MovieCommentList from '../components/moviedetail/MovieCommentList.vue'
 import MovieActorsList from '../components/moviedetail/MovieActorsList.vue'
 import SimilarMovieItem from '../components/moviedetail/SimilarMovieItem.vue'
-import { mapGetters } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 
 import axios from "axios"
 // import _ from "lodash"
@@ -81,6 +90,7 @@ export default {
     return {
       // get_movieID: "",
       movie: this.$route.params.movie_id,
+      moviePk: this.$route.params.movie_id,
       // movie: this.get_movie,
       title: '',
       original_title: '',
@@ -94,9 +104,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['get_movie']),
+    ...mapGetters(['get_movie', 'isLiking', 'currentUser', 'get_movie_data']),
   },
   methods: {
+    ...mapActions(['likeMovie', 'fetchCurrentUser',]),
     click_actor: function() {
       if (this.menubar === false) {
         this.menubar = true
@@ -143,6 +154,7 @@ export default {
       // console.log(res.data)
       })
       .catch(err => console.log(err))
+      this.fetchCurrentUser()
   },
   watch: {
       '$route' (to, from) {

@@ -4,18 +4,10 @@
       <div class="d-flex justify-content-center">
         <div class="d-flex flex-column">
           <img :src="profile.profile_img" alt="profile_img">
-          {{ isEditing }}
-          <!-- <span v-if="!isEditing">1234</span> -->
-          <!-- {{ isEditing }} -->
-          <!-- <input type="text" v-model="payloads.img"> -->
-          <span v-if="isEditing">
-            <input type="text">
-            <button @click="onUpdate">Update</button> |
-            <button @click="switchIsEditing">Cancle</button>
-          </span>
-          <span v-if="profile.username === currentUser.username && !isEditing">
-            <button @click="switchIsEditing">Edit</button> |
-          </span>
+          <router-link 
+          :to="{ name: 'profileImg' }">
+            <button>프로필 사진 변경</button>
+          </router-link>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center">
           <div class="d-flex">
@@ -58,22 +50,11 @@ export default {
   data() {
     return {
       username: this.$route.params.username,
-      isEditing: false,
-      // payloads: {
-      //   username: this.profile.username,
-      //   img: this.profile.profile_img,
-      // },
     }
   },
   methods: {
     ...mapActions(['fetchProfile', 'followProfile', 'updateImg']),
-    switchIsEditing() {
-      this.isEditing = !this.isEditing
-    },
-    onUpdate() {
-      this.updateImg(this.payloads)
-      this.isEditing = false
-    }
+
   },
   created() {
     const payload = { username: this.$route.params.username }

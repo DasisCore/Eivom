@@ -32,6 +32,7 @@ export default {
     movie: movie_id => HOST + MOVIES + `${ movie_id }/`,
     movie_comment: movie_id => HOST + MOVIES + `${ movie_id }/` + COMMENTS,
     movie_comment_delete: (moviePk, commentPk) => HOST + MOVIES + `${moviePk}/` + COMMENTS + `${commentPk}/`,
+    likeMovie: moviePk => HOST + MOVIES + `${ moviePk }/` + 'like/'
     // movies: () => HOST + MOVIES,
   }
 }

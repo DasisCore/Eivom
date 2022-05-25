@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'profile_img',)
+        fields = ('pk','username', 'profile_img',)
 
 class MovieListSerializer(serializers.ModelSerializer):
     
