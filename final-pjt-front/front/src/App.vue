@@ -23,11 +23,6 @@
             <router-link to="/community" class="nav-link text-secondary"
             active-class="active">광장</router-link>
           </li>
-
-          <li class="nav-item long_menu">
-            <router-link to="/moviedetail" class="nav-link text-secondary"
-            active-class="active"> 임시 영화 상세 페이지 링크 </router-link>
-          </li>
           
         </div>
 
@@ -54,7 +49,7 @@
     <router-view/>
 
     <footer class="fs-3 text-center">
-      footerbar
+      <router-link to="/easteregg" class="nav-link text-secondary">footer</router-link>
     </footer>
   </div>
 </template>

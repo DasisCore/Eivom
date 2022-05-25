@@ -80,7 +80,7 @@
 
   let num = _.random(1, 9)
   // console.log(movie)
-  console.log(movie.movies[num].title)
+  // console.log(movie.movies[num].title)
 
   export default {
     name: 'MainView',
@@ -127,7 +127,7 @@
       ele.forEach(e => {
           let eleOffset = e.getBoundingClientRect().top + window.pageYOffset - 800;
           eleOffsetArr.push(eleOffset)
-          console.log(eleOffset)
+          // console.log(eleOffset)
       });
       
       eleOffsetArr.forEach((offset, idx) => {

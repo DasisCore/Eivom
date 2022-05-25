@@ -7,13 +7,15 @@
       </div> -->
       <div class="d-flex justify-content-between">
         <div class="d-flex">
+          <a id="a_img" :href="`http://localhost:8080/profile/${comment.user.username}`">
           <div class="box" style="background: #BDBDBD;">
             <img v-if="profile_img" class="profile" :src="profile_img">
             <img v-else class="profile" src="@/assets/default_profile.jpg">
           </div>
+          </a>
           <div class="ms-3">
             <div class="d-flex">
-              <div>{{ comment.user.username }}</div>
+              <a :href="`http://localhost:8080/profile/${comment.user.username}`"><div>{{ comment.user.username }}</div></a>
               <div v-if="currentUser.username == comment.user.username" class="d-flex" style="margin-left:10px;">
                 <button v-if="!isEditing" @click="switchIsEditing">수정</button>
                 <button v-if="isEditing" @click="onUpdate; add()">업데이트</button>
@@ -131,5 +133,15 @@ export default {
     background-color: rgba(255, 255, 255, 0);
     color: #acacac;
     margin-right: 5px
+  }
+
+  a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+  }
+  
+  #a_img {
+    border-radius: 70%;
+    overflow: hidden;
   }
 </style>

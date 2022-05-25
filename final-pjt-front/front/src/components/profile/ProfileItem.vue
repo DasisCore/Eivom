@@ -11,14 +11,15 @@
             </router-link>
           </div>
           <div class="d-flex flex-column" style="margin-top: 80px">
-            <div class="d-flex">
+            <div class="d-flex justify-content-between">
               <div style="font-size: 50px">
                 <div style="margin:0;">Hello,</div>
                 <div>{{ profile.username }}.</div>
               </div>
-              <button @click="followProfile(username)" v-if="notMyAccount && isFollowing">언팔로우</button>
-              <button @click="followProfile(username)" v-if="notMyAccount && !isFollowing">팔로우</button>
-
+              <div class="d-flex align-items-end" style="margin-bottom: 15px">
+                <button class="btn btn-light btn-sm" @click="followProfile(username)" v-if="notMyAccount && isFollowing">언팔로우</button>
+                <button class="btn btn-primary btn-sm" @click="followProfile(username)" v-if="notMyAccount && !isFollowing">팔로우</button>
+              </div>
               <!-- 본인 프로필이면 팔로우 버튼 x
               팔로우 상태면 언팔로우버튼
               언팔로우 상태면 팔로우버튼 -->
@@ -95,7 +96,7 @@ export default {
   }
 
   #back_profile {
-    height: 35rem;
+    height: 37rem;
   }
 
   #movie_logo {
