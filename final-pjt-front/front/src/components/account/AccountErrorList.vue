@@ -5,7 +5,7 @@
       <div>
         <div v-for="(error, idx) in errors" :key="idx">
           <!-- {{ error }} -->
-          <div id="debug" v-if="error" class="text-center mb-3">로그인 정보가 불확실합니다.</div>
+          <div id="debug" v-if="error" class="text-center mb-3">입력 정보가 불확실합니다.</div>
           <div v-else></div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 <template>
   <div id="main" class="d-flex">
       <div class="login_logo display-4">
-        로그인.
+        로그인
       </div>
     <div class="container d-flex align-items-center justify-content-center">
       <div class="d-flex justify-content-center align-items-center mb-5">
           <div>
-      <account-error-list v-if="authError"></account-error-list>
+            <account-error-list v-if="authError"></account-error-list>
             <div>
               <form @submit.prevent="login(credentials)" id="userInfo" name="userInfo">
                 <div class="login-form">
@@ -126,8 +126,9 @@ export default {
 
 <style scoped>
 
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+  @import 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap';
   @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css";
+  
 
   .login_logo {
     position: absolute;

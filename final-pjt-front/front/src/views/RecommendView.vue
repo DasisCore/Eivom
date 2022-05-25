@@ -6,35 +6,36 @@
         <li>
           <div>
             <time>인사</time>
-            <p>Eivom에 오신걸 환영합니다</p>
-            <p>간단한 질문 후에 영화를 추천해 드리겠습니다.</p>
+            <p class="question">어서오세요!</p>
+            <p class="question">Eivom에 오신걸 환영합니다</p>
+            <p class="question">간단한 질문 후에 영화를 추천해 드리겠습니다.</p>
           </div>
         </li>
         <li>
-          <div style="height: 300px;">
+          <div>
             <time>장르</time>
-            이 장르는 있었으면 좋겠어요.
-            <buttons id="genres" class="d-flex" style="height:200px;">
-              <com class="row" style="width:370px;">
+            <p class="question">어떤 장르가 있었으면 좋겠나요?</p>
+            <buttons id="genres" class="d-flex" style="height:100px;">
+              <com class="row">
                 <com class="d-flex justify-content-around align-items-center">
                   <input type="checkbox" id="action1" value=28 v-model="with_genres">
-                  <label for="action1">액션</label>
+                  <label for="action1" class="yp-btn yp-btn-white">액션</label>
                   <input type="checkbox" id="animation1" value=16 v-model="with_genres">
-                  <label for="animation1">애니메이션</label>
+                  <label for="animation1" class="yp-btn yp-btn-white">애니메이션</label>
                   <input type="checkbox" id="comedy1" value=35 v-model="with_genres">
-                  <label for="comedy1">코미디</label>
+                  <label for="comedy1" class="yp-btn yp-btn-white">코미디</label>
                   <input type="checkbox" id="drama1" value=18 v-model="with_genres">
-                  <label for="drama1">드라마</label>
+                  <label for="drama1" class="yp-btn yp-btn-white">드라마</label>
                 </com>
                 <com class="d-flex justify-content-around align-items-center">
                   <input type="checkbox" id="fantasy1" value=14 v-model="with_genres">
-                  <label for="fantasy1">판타지</label>
+                  <label for="fantasy1" class="yp-btn yp-btn-white">판타지</label>
                   <input type="checkbox" id="romance1" value=10749 v-model="with_genres">
-                  <label for="romance1">로맨스</label>
+                  <label for="romance1" class="yp-btn yp-btn-white">로맨스</label>
                   <input type="checkbox" id="SF1" value=878 v-model="with_genres">
-                  <label for="SF1">SF</label>
+                  <label for="SF1" class="yp-btn yp-btn-white">SF</label>
                   <input type="checkbox" id="thriller1" value=53 v-model="with_genres">
-                  <label for="thriller1">스릴러</label>
+                  <label for="thriller1" class="yp-btn yp-btn-white">스릴러</label>
                 </com>
               </com>
             </buttons>
@@ -43,28 +44,28 @@
         <li>
           <div>
             <time>장르</time>
-            <p>이 장르는 없었으면 좋겠어요.</p>
-            <buttons id="genres" class="d-flex" style="height:200px;">
-              <com class="row" style="width:370px;">
+            <p class="question">싫어하는 장르가 있나요?</p>
+            <buttons id="genres" class="d-flex" style="height:100px;">
+              <com class="row">
                 <com class="d-flex justify-content-around align-items-center">
                   <input type="checkbox" id="action2" value=28 v-model="without_genres">
-                  <label for="action2">액션</label>
+                  <label for="action2" class="yp-btn yp-btn-white">액션</label>
                   <input type="checkbox" id="animation2" value=16 v-model="without_genres">
-                  <label for="animation2">애니메이션</label>
+                  <label for="animation2" class="yp-btn yp-btn-white">애니메이션</label>
                   <input type="checkbox" id="comedy2" value=35 v-model="without_genres">
-                  <label for="comedy2">코미디</label>
+                  <label for="comedy2" class="yp-btn yp-btn-white">코미디</label>
                   <input type="checkbox" id="drama2" value=18 v-model="without_genres">
-                  <label for="drama2">드라마</label>
+                  <label for="drama2" class="yp-btn yp-btn-white">드라마</label>
                 </com>
                 <com class="d-flex justify-content-around align-items-center">
                   <input type="checkbox" id="fantasy2" value=14 v-model="without_genres">
-                  <label for="fantasy2">판타지</label>
+                  <label for="fantasy2" class="yp-btn yp-btn-white">판타지</label>
                   <input type="checkbox" id="romance2" value=10749 v-model="without_genres">
-                  <label for="romance2">로맨스</label>
+                  <label for="romance2" class="yp-btn yp-btn-white">로맨스</label>
                   <input type="checkbox" id="SF2" value=878 v-model="without_genres">
-                  <label for="SF2">SF</label>
+                  <label for="SF2" class="yp-btn yp-btn-white">SF</label>
                   <input type="checkbox" id="thriller2" value=53 v-model="without_genres">
-                  <label for="thriller2">스릴러</label>
+                  <label for="thriller2" class="yp-btn yp-btn-white">스릴러</label>
                 </com>
               </com>
             </buttons>
@@ -73,55 +74,57 @@
         <li>
           <div>
             <time>옛 영화</time>
-            <p>옛날 영화도 좋아 하시나요?</p>
-            <com>
+            <p class="question">옛날 영화도 좋아하시나요?</p>
+            <buttons id="genres" class="d-flex" style="height:50px;">
               <input name="rel" type="radio" id="yes_rel" v-model="primary_release_date_gte" value="2000" />
-              <label for="yes_rel">네</label>
+              <label for="yes_rel" class="yp-btn yp-btn-white">네</label>
               <input name="rel" type="radio" id="no_rel" v-model="primary_release_date_gte" value="2010" />
-              <label for="no_rel">아니요</label>
-            </com>
+              <label for="no_rel" class="yp-btn yp-btn-white">아니요</label>
+            </buttons>
           </div>
         </li>
         <li>
           <div>
             <time>유명도</time>
-            <p>유명한 영화 위주로 찾을까요?</p>
-            <com>
+            <p class="question">유명한 영화 위주로 찾을까요?</p>
+            <buttons id="genres" class="d-flex" style="height:50px;">
               <input name="pop" type="radio" id="yes_pop" v-model="sort_by" value="popularity_asc" />
-              <label for="yes_pop">네</label>
+              <label for="yes_pop" class="yp-btn yp-btn-white">네</label>
               <input name="pop" type="radio" id="no_pop" v-model="sort_by" value="popularity_desc" />
-              <label for="no_pop">아니요</label>
-            </com>
+              <label for="no_pop" class="yp-btn yp-btn-white">아니요</label>
+            </buttons>
           </div>
         </li>
         <li>
           <div>
             <time>연령</time>
-            <p>성인영화도 넣을까요?</p>
-            <com>
+            <p class="question">성인 영화도 포함할까요?</p>
+            <buttons id="genres" class="d-flex" style="height:50px;">
               <input name="age" type="radio" id="yes_age" v-model="include_adult" value="true" />
-              <label for="yes_age">네</label>
+              <label for="yes_age" class="yp-btn yp-btn-white">네..!</label>
               <input name="age" type="radio" id="no_age" v-model="include_adult" value="false" />
-              <label for="no_age">아니요</label>
-            </com>
+              <label for="no_age" class="yp-btn yp-btn-white">아니요</label>
+            </buttons>
           </div>
         </li>
         <li>
           <div>
             <time>평점</time>
-            <p>평점이 좋은 영화 위주로 찾을까요?</p>
-            <com>
-              <input name="vote" type="radio" id="yes_vote" v-model="vote_average_gte" value="6" />
-              <label for="yes_vote">네</label>
+            <p class="question">평점이 좋은 영화 위주로 찾을까요?</p>
+            <buttons id="genres" class="d-flex" style="height:50px;">
+              <input name="vote" type="radio" id="yes_vote" v-model="vote_average_gte" value="7" />
+              <label for="yes_vote" class="yp-btn yp-btn-white">네</label>
               <input name="vote" type="radio" id="no_vote" v-model="vote_average_gte" value="4" />
-              <label for="no_vote">아니요</label>
-            </com>
+              <label for="no_vote" class="yp-btn yp-btn-white">아니요</label>
+            </buttons>
           </div>
         </li>
         <li>
           <div>
-            <p>제출할까요?</p>
-            <button @click="submission">제출</button>
+            <p class="question">제출할까요?</p>
+            <buttons>
+              <button @click="submission" class="yp-btn yp-btn-white">제출</button>
+            </buttons>
           </div>
         </li>
       </ul>
@@ -165,12 +168,10 @@
           </div>
         </div>
       </div>
-    
   </div>
 </template>
 
 <script>
-// import Recommend from '../components/recommend/Recommend.vue'
 import axios from 'axios'
 import _ from "lodash"
 
@@ -180,7 +181,6 @@ const API_KEY = process.env.VUE_APP_TMDB_API_KEY
 export default {
   name: 'RecommendView',
   components: {
-    // Recommend,
   },
   data: function() {
     return {
@@ -308,8 +308,8 @@ export default {
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 
-  .timeline ul {
-    background: #ffffff;
+  .app6 {
+    background-image: linear-gradient(to bottom, #d2eeff, #d3ecfd, #d4ebfa, #d4e9f8, #d5e8f5, #d8e9f5, #daebf4, #ddecf4, #e3f0f6, #eaf4f8, #f0f7fa, #f7fbfc);
     padding: 50px 0;
   }
 
@@ -338,11 +338,11 @@ export default {
   .timeline ul li div {
     position: relative;
     bottom: 0;
-    width: 400px;
+    width: 500px;
     padding: 15px;
-    background: #c7c9cc;
+    background: #E6F4F1;
     border-radius: 7px;
-    box-shadow: 10px 10px 10px rgb(173, 173, 173);
+    box-shadow: 5px 5px 5px rgb(195, 195, 195);
   }
 
   .timeline ul li div::before {
@@ -363,27 +363,34 @@ export default {
   .timeline ul li:nth-child(odd) div::before {
     left: -12px;
     border-width: 8px 16px 8px 0;
-    border-color: transparent #c7c9cc transparent transparent;
+    border-color: transparent #E6F4F1 transparent transparent;
   }
 
   /* 왼쪽 박스 위치 */
   .timeline ul li:nth-child(even) div {
-    left: -439px;
+    left: -540px;
   }
 
   /* 왼쪽 꼬리표 */
   .timeline ul li:nth-child(even) div::before {
     right: -12px;
     border-width: 8px 0 8px 16px;
-    border-color: transparent transparent transparent #c7c9cc;
+    border-color: transparent transparent transparent #E6F4F1;
   }
 
 
   time {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
     display: block;
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.4rem;
     margin-bottom: 8px;
+  }
+
+  .question {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem !important;
   }
 
 
@@ -401,7 +408,7 @@ export default {
   .timeline ul li div {
     visibility: hidden;
     opacity: 0;
-    transition: all 0.5s ease-in-out;
+    transition: all 1s ease-in-out;
   }
 
   .timeline ul li:nth-child(odd) div {
@@ -445,7 +452,7 @@ export default {
     .timeline ul li:nth-child(even) div::before {
       left: -15px;
       border-width: 8px 16px 8px 0;
-      border-color: transparent #f45b69 transparent transparent;
+      border-color: transparent #c7c9cc transparent transparent;
     }
   }
 
@@ -523,7 +530,8 @@ export default {
     border: 0;
     border-radius: 20px;
     outline: 0;
-    font-family: "Lato", sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
     font-size: 100%;
     vertical-align: bottom;
     text-decoration: none;
@@ -696,4 +704,136 @@ export default {
     width: 100%;
     height: 100%;
   }
+
+
+  /*---------------------------------------------------- */
+  /* 버튼 css */
+    /* Buttons */
+  
+  #sub,
+  #sub:hover,
+  #sub:focus,
+  #sub:active {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
+
+  #sub {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    position: relative;
+    height: 40px;
+    width: 90px;
+    z-index: 1;
+  }
+
+  #sub:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* border: 2px solid #fff; */
+    border-radius: 5px;
+    z-index: -1;
+    /* transform: skew(-6deg); */
+    background: none;
+    transition: 0.3s background ease, 0.3s border ease;
+  }
+
+  .yp-btn,
+  .yp-btn:hover,
+  .yp-btn:focus,
+  .yp-btn:active {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+  }
+
+  .yp-btn {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    position: relative;
+    height: 40px;
+    width: 90px;
+    z-index: 1;
+  }
+  .yp-btn.yp-btn-xs {
+    padding: 4px 15px;
+  }
+  .yp-btn.yp-btn-sm {
+    padding: 8px 20px;
+  }
+  .yp-btn.yp-btn-md {
+    padding: 15px 40px;
+  }
+  .yp-btn.yp-btn-lg {
+    padding: 15px 50px;
+  }
+  .yp-btn.yp-btn-full {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+  .yp-btn:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* border: 2px solid #fff; */
+    border-radius: 5px;
+    z-index: -1;
+    /* transform: skew(-6deg); */
+    background: none;
+    transition: 0.3s background ease, 0.3s border ease;
+  }
+
+
+  .yp-btn-white:hover,
+  .yp-btn-white:focus,
+  .yp-btn-white.focus,
+  .yp-btn-white:active,
+  .yp-btn-white.active {
+    color: rgb(0, 0, 0);
+    border: 1px solid #fff;
+  }
+  .yp-btn-white:hover:before,
+  .yp-btn-white:focus:before,
+  .yp-btn-white.focus:before,
+  .yp-btn-white:active:before,
+  .yp-btn-white.active:before {
+    /* border: 1px solid #fff; */
+    border-radius: 5px;
+    background: #FFD2E2;
+  }
+
+  input:checked + label {
+    background: #FFD2E2;
+    border-radius: 5px;
+    color: black;
+  }
+
+  input {
+    visibility: hidden;
+  }
+
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    cursor: pointer;
+  }
+
 </style>
