@@ -10,18 +10,22 @@ export default {
   state: {
     articles: [],
     article: {},
+    currentUser: {},
   },
 
   getters: {
+    currentUser: state => state.currentUser,
     articles: state => state.articles,
     article: state => state.article,
     isAuthor: (state, getters) => {
       return state.article.user?.username === getters.currentUser.username
     },
     isArticle: state => !_.isEmpty(state.article),
+    articleLiking: state => _.some(state.article.article_like, {"pk":state.currentUser.pk})
   },
 
   mutations: {
+    SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_ARTICLES: (state, articles) => state.articles = articles,
     SET_ARTICLE: (state, article) => state.article = article,
     SET_ARTICLE_COMMENTS: (state, comments) => (state.article.comments = comments),

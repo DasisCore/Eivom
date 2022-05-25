@@ -10,10 +10,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'profile_img')
 
+
 class ArticleLikeListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', )
+        fields = ('pk',)
 
 class CommentSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):

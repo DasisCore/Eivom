@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>New Article</h1>
-    <article-form :article="article" action="create"></article-form>
+    <!-- <h1>New Article</h1> -->
+    <article-form :article="article" action="작성하기"></article-form>
   </div>
 </template>
 

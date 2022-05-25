@@ -11,10 +11,7 @@
         <div class="card__right__header__title">
           <h3>{{ title }}</h3>
         </div>
-        <div class="card__right__header__score">
-          <i class="fa-solid fa-star" style="color: yellow"></i>
-          <p>{{ vote_average }}</p>
-        </div>
+        
       </div>
 
       <div class="card__right__genres">
@@ -25,6 +22,10 @@
         >
           {{ genre.name }}
         </span>
+        <div class="card__right__header__score">
+          <i class="fa-solid fa-star" style="color: yellow"></i>
+          <p>{{ vote_average }}</p>
+        </div>
       </div>
 
     </div>
@@ -87,7 +88,8 @@ data: function(){
   .app5 {
     height: 300px;
     width: 300px;
-    background-color: #aed4b6
+    background-color: #aed4b6;
+    
   }
   .card__left__img {
     width: 150px;
@@ -95,9 +97,12 @@ data: function(){
   .cards {
   width: 30rem;
   display: flex;
+  justify-content: space-evenly;
   border-radius: 4px;
   padding: 1rem 0rem;
   border-bottom: 1px solid var(--recommend-border);
+  margin-left: 35px;
+  margin-right: 35px;
   }
   .card__right{
     display: flex;

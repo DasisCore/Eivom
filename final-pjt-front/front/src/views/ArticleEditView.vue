@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Edit Article</h1>
-    <article-form v-if="isArticle" :article="article" action="update">
+
+    <article-form v-if="isArticle" :article="article" action="수정하기">
 
     </article-form>
   </div>

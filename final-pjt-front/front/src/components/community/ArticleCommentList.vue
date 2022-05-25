@@ -1,7 +1,7 @@
 <template>
   <div class="article-comment-list">
     
-    <ul>
+    <ul style="padding-left:0px;">
       <article-comment-list-item 
         v-for="comment in comments" 
         :comment="comment" 

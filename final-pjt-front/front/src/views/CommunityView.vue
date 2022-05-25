@@ -1,16 +1,11 @@
 <template>
   <div class="app">
     <div>
-      <div class="d-flex">
-        <div>
-          <article-list></article-list>
-          <!-- <div class="d-flex justify-content-center">
-            <pagination></pagination>
-          </div> -->
-        </div>
-        <div>
-          <community-card></community-card>
-        </div>
+      <div class="d-flex justify-content-between">
+  
+        <article-list></article-list>
+        <community-card></community-card>
+   
       </div>
       
     </div>
@@ -36,6 +31,8 @@ export default {
 
 <style scoped>
 .app {
+  margin-left: 10rem;
+  margin-right: 10rem;
   height: 40rem;
 }
 

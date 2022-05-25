@@ -17,13 +17,21 @@ export default {
 </script>
 
 <style>
+@import 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap';
+  * {
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-weight: 500;
+  }
   .app3 {
-    height: 600px;
-    width: 40rem;
-    background-color: #b7d7e2;
+    height: 330px;
+    /* width: 40rem; */
+    background-color: lightgrey;
+    /* border: 2px solid; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 5rem;
+    border-radius: 25px;
   }
 </style>
