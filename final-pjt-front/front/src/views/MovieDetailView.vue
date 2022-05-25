@@ -201,6 +201,7 @@ export default {
     margin-left: 20px;
     }
 
+
   .loading {
     margin-top: 3.5rem;
     width:100%;
