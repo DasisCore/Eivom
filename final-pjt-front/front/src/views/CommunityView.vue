@@ -28,10 +28,11 @@ export default {
 </script>
 
 <style scoped>
-.app {
-  margin-left: 15rem;
-  margin-right: 15rem;
-  height: 40rem;
-}
+
+  .app {
+    margin-left: 15rem;
+    margin-right: 15rem;
+    margin-bottom: 100px;
+  }
 
 </style>

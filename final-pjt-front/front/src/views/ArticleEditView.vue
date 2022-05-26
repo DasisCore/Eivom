@@ -1,8 +1,7 @@
 <template>
-  <div>
-
+  <div id="main">
+    <div id="title">게시글 수정</div>
     <article-form v-if="isArticle" :article="article" action="수정하기">
-
     </article-form>
   </div>
 
@@ -26,4 +25,17 @@ import { mapGetters, mapActions } from 'vuex'
   }
 </script>
 
-<style></style>
+<style scoped>
+
+  #title {
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    margin: 80px 30px 80px 150px;
+  }
+
+  #main {
+    margin-bottom: 100px;
+  }
+
+</style>

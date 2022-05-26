@@ -152,7 +152,7 @@
   }
 
   .img1 {
-    height: 600px
+    height: 600px;
   }
 
   #middle {

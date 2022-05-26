@@ -20,13 +20,13 @@
               <div style="font-size: 50px">
                 <div v-if="currentUser.username == profile.username" style="margin:0;">어서와요!</div>
                 <div>{{ profile.username }}<span v-if="currentUser.username == profile.username" style="margin:0; font-size:50px">.</span><span v-else style="margin:0; font-size:50px">의</span></div>
-                <div v-if="currentUser.username != profile.username" style="margin:0; font-size:50px; font-weight: 500">프로필</div>
-              </div>
-              <div class="d-flex align-items-end" style="margin-bottom: 15px">
-                <button v-if="currentUser.username != profile.username" id="follow" @click="followProfile(username)" class="heart-button" :class="{active : isFollowing}">
-                  <div class="heart-flip"></div>
-                  <span>follow<span>ed</span></span>
-                </button>
+                <div class="d-flex align-items-center">
+                  <div v-if="currentUser.username != profile.username" style="margin:0; font-size:50px; font-weight: 500">프로필</div>
+                    <button v-if="currentUser.username != profile.username" id="follow" @click="followProfile(username)" class="heart-button" :class="{active : isFollowing}">
+                      <div class="heart-flip"></div>
+                      <span>follow<span>ed</span></span>
+                    </button>
+                </div>
               </div>
 
               <!-- 본인 프로필이면 팔로우 버튼 x
@@ -115,6 +115,7 @@ export default {
     opacity: 1;
   }
   .changeText {
+    font-weight: 700;
     transition: all 0.1s;
     display: flex;
     justify-content: center;
@@ -317,27 +318,7 @@ export default {
     background: #F6F8FF;
   }
   body .heart-button {
-    margin-top: 40px;
-  }
-  body .dribbble {
-    position: fixed;
-    display: block;
-    right: 20px;
-    bottom: 20px;
-  }
-  body .dribbble img {
-    display: block;
-    height: 28px;
-  }
-  body .twitter {
-    position: fixed;
-    display: block;
-    right: 64px;
-    bottom: 14px;
-  }
-  body .twitter svg {
-    width: 32px;
-    height: 32px;
-    fill: #1da1f2;
+    margin-left: 20px;
+    margin-top: 15px;
   }
 </style>

@@ -8,10 +8,10 @@
       <div class="d-flex justify-content-between">
         <div class="d-flex">
           <a id="a_img" :href="`http://localhost:8080/profile/${comment.user.username}`">
-          <div class="box" style="background: #BDBDBD;">
-            <img v-if="profile_img" class="profile" :src="profile_img">
-            <img v-else class="profile" src="@/assets/default_profile.jpg">
-          </div>
+            <div class="box" style="background: #BDBDBD;">
+              <img v-if="comment.user.profile_img" :src="comment.user.profile_img" alt="profile_img" class="profile_img">
+              <img v-else class="profile_img" src="@/assets/default_profile.jpg">
+            </div>
           </a>
           <div class="ms-3">
             <div class="d-flex">
@@ -121,6 +121,11 @@ export default {
       object-fit: cover;
   }
 
+  img {
+    width: 65px;
+    height: 65px;
+    border-radius: 70%;
+  }
   #star {
     color: rgb(250, 187, 0);
   }

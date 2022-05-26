@@ -134,11 +134,11 @@
 
   .article_logo {
     font-family: 'Noto Sans KR',  sans-serif;
-    font-weight: 500;
+    font-weight: 700;
     color: #1d1d1f;
     /* padding-left: 4%; */
     padding-top: 5%;
-    padding-bottom: 15px;
+    padding-bottom: 50px;
     /* left: 20%;
     top: 10%; */
   }

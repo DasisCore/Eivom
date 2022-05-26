@@ -84,7 +84,7 @@ export default {
     width: 900px;
   }
   .haha{
-    width: 900px;
+    width: 50vw;
   }
   a {
     text-decoration: none;
@@ -93,6 +93,7 @@ export default {
     padding: 0 0 0 0;
   }
   .community {
+    min-width: 400px;
     margin: 70px 30px 50px 30px;
 
   }
@@ -108,11 +109,12 @@ export default {
   }
 
 
-  .board table {
+  table {
+    min-width: 420px;
     box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.275);
     border-radius: 6px;
     overflow: hidden;
-    /* width: 65vw; */
+    width: 50vw;
     /* height: 100%; */
 
   }
@@ -147,41 +149,6 @@ export default {
   /*---------------------------------------------------- */
   /* 버튼 css */
     /* Buttons */
-  
-  #sub,
-  #sub:hover,
-  #sub:focus,
-  #sub:active {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    outline: none;
-    background-color: rgb(255, 255, 255);
-    border-radius: 5px;
-  }
-
-  #sub {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 500;
-    position: relative;
-    height: 40px;
-    width: 90px;
-    z-index: 1;
-  }
-
-  #sub:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* border: 2px solid #fff; */
-    border-radius: 5px;
-    z-index: -1;
-    /* transform: skew(-6deg); */
-    background: none;
-    transition: 0.3s background ease, 0.3s border ease;
-  }
 
   .yp-btn,
   .yp-btn:hover,
@@ -191,20 +158,20 @@ export default {
     text-decoration: none;
     outline: none;
     background-color: rgb(255, 255, 255);
-    border-radius: 5px;
-    border: 2px solid rgb(25, 25, 84);
+    border-radius: 50px;
+    border: 2px solid rgb(150, 150, 150);
   }
 
   .yp-btn {
-    top: 10px;
+    top: 15px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 20px;
     position: relative;
-    height: 60px;
-    width: 220px;
+    height: 50px;
+    width: 170px;
     z-index: 1;
-    box-shadow: 3px 5px 6px 1px rgba(0, 0, 0, 0.281);
+    box-shadow: 1px 3px 6px 1px rgba(0, 0, 0, 0.198);
     
   }
 
@@ -215,12 +182,11 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 5px;
+    border-radius: 50px;
     z-index: -1;
     background: none;
-    transition: 0.3s background ease, 0.3s border ease;
+    transition: 0.7s background ease, 0.7s border ease;
   }
-
 
   .yp-btn-white:hover,
   .yp-btn-white:focus,
@@ -228,36 +194,16 @@ export default {
   .yp-btn-white:active,
   .yp-btn-white.active {
     color: rgb(0, 0, 0);
-    border: 1px solid #fff;
+    border: 1px solid rgb(150, 150, 150);
   }
   .yp-btn-white:hover:before,
   .yp-btn-white:focus:before,
   .yp-btn-white.focus:before,
   .yp-btn-white:active:before,
   .yp-btn-white.active:before {
-    /* border: 1px solid #fff; */
-    border-radius: 5px;
-    background: #FFD2E2;
+    border: 1px solid rgb(150, 150, 150);
+    border-radius: 50px;
+    background: rgb(255, 241, 212);
   }
 
-  input:checked + label {
-    background: #FFD2E2;
-    border-radius: 5px;
-    color: black;
-  }
-
-  input {
-    visibility: hidden;
-  }
-
-  label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
-    cursor: pointer;
-  }
 </style>

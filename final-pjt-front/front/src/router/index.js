@@ -80,7 +80,7 @@ const routes = [
   },
   {
     path: '/easteregg',
-    name: 'Easteregg',
+    name: 'easteregg',
     commponent: FooterView
   },
   {

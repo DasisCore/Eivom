@@ -98,6 +98,7 @@ export default {
 
 
   #comment_list {
+    min-width: 500px;
     background-color: #f2f2f2;
     border-radius: 20px;
     /* height: 1000px; */

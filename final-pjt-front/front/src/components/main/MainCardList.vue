@@ -26,7 +26,7 @@
           items: 3,
         },
         992:{
-          itmes: 4,
+          items: 4,
         }
       }">
         <main-card-item v-for="movie in movies" :key="movie.id" :movie="movie"></main-card-item>

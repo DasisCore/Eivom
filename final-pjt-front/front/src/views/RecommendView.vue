@@ -123,7 +123,7 @@
           <div>
             <p class="question">제출할까요?</p>
             <buttons>
-              <button @click="submission" class="yp-btn yp-btn-white">제출</button>
+              <button @click="submission" class="last_btn">영화 추천받기!</button>
             </buttons>
           </div>
         </li>
@@ -389,10 +389,19 @@ export default {
 
   .question {
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1.2rem !important;
   }
 
+  .last_btn{
+    border-radius: 4px;
+    border: 0px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    background-color: white;
+    height: 40px;
+    width: 150px;
+  }
 
   /* EFFECTS
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
