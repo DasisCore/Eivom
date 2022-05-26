@@ -28,5 +28,13 @@ export default {
 </script>
 
 <style scoped>
+<<<<<<< HEAD
+=======
+.app {
+  margin-left: 18rem;
+  margin-right: 18rem;
+  height: 40rem;
+}
+>>>>>>> 8e702aadde5b5d6b19bf16a078cf5d285d9ea4d7
 
 </style>

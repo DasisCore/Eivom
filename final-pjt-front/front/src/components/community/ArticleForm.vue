@@ -49,7 +49,7 @@ import { mapActions } from 'vuex'
 
 <style scoped>
   .container {
-    background-color: #f2f2f2;
+    background-color: #fff6ea;
     margin-top: 1rem;
     height: 800px;
   }

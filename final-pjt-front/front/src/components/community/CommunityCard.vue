@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="app3" v-if="poster_path != '' ">
       <h2>이 영화는 어떠세요?</h2>
         <div class="cards">
@@ -22,6 +23,11 @@
           </div>
         </div>
       </div>
+=======
+    <div class="app3">
+      <h3>이 영화 어때요</h3>
+      <community-card-item></community-card-item>
+>>>>>>> 8e702aadde5b5d6b19bf16a078cf5d285d9ea4d7
     </div>
 </template>
 
@@ -79,7 +85,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @import 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap';
   * {
     font-family: 'Noto Sans KR',  sans-serif;
@@ -90,11 +96,15 @@ export default {
     width: 30vw;
     height: 400px;
     /* width: 40rem; */
+<<<<<<< HEAD
     background-color: rgb(245, 245, 245);
+=======
+    /* background-color: lightgrey; */
+>>>>>>> 8e702aadde5b5d6b19bf16a078cf5d285d9ea4d7
     /* border: 2px solid; */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     /* margin-top: 5rem; */
     border-radius: 15px;

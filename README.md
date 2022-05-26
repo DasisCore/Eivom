@@ -5,21 +5,21 @@ README 형준
 # 미해결 버그 목록
 
 - [ ] 좋아요 버튼 갑자기 안됨 -> profile_img 부분 건들면서 오류 발생한 듯
-- [ ] 되긴 되는데 새로고침 해야함 바로바로 동기화가 x
-- [ ] 조회수 증가x
+  - [ ] 새로고침 추가하기
+
+- [x] 조회수 증가x
+  - [x] 삭제했음
+
 - [ ] community 화면에서 게시글 번호가 pk로 잡혀있어서 들쭉날쭉함
 - [ ] community 중 이 영화는 어떠세요 => 50번~10000번 중 하나의 id를 택해서 그걸 axios 요청 보냈는데 중간 중간에 없는 영화가 매우 많음
   - [ ] 영화 추천 1개만
-
 - [ ] pagination
 - [x] profile 내 like_movies 2행 4열로 만들기 => 현재는 일자로 쭉 나옴
-  - [ ] 겹치게 나오는거 해결하기
-
+  - [x] 겹치게 나오는거 해결하기
 - [ ] profile에서 comments 정보 안 넘어옴 -> 백 수정
-  - [ ] 애초에 profile 모델, serializer xxx
-  - [ ] user 모델에서 comment 클래스 추가해서 엮어주기
-
-- [ ] profile.comments 받아서 comment 리스트 만들기
+  - [x] 애초에 profile 모델, serializer xxx
+  - [x] user 모델에서 comment 클래스 추가해서 엮어주기
+  - [x] profile.comments 받아서 comment 리스트 만들기
 
 ---
 
@@ -27,7 +27,7 @@ README 형준
 
 - [ ] profile img 추가/수정
 - [ ] profile 댓글 CRUD
-- [ ] profile follow
+- [x] profile follow
 
 
 

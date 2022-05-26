@@ -114,8 +114,13 @@ export default {
   }
 
   .board__header {
+<<<<<<< HEAD
     background-color: #f4f4f5;
     color: black;
+=======
+    background-color: #fff6ea;
+    color: var(--board-header-text);
+>>>>>>> 8e702aadde5b5d6b19bf16a078cf5d285d9ea4d7
   }
 
   .board__header__row {
