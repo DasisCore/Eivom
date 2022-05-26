@@ -92,7 +92,8 @@ export default {
 
   img {
     width: 50px;
-    border-radius: 70%;
+    height: 50px;
+    border-radius: 100%;
   }
 
   a {
