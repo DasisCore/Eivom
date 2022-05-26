@@ -2,7 +2,8 @@
   <li class="comment-list-item" style="list-style:none">
     <div class="d-flex justify-content-between">
       <div>
-        <img :src="comment.user.profile_img" alt="profile_img" class="profile_img">
+        <img v-if="comment.user.profile_img" :src="comment.user.profile_img" alt="profile_img" class="profile_img">
+        <img v-else class="profile_img" src="@/assets/default_profile.jpg">
         <router-link :to="{ name: 'profile', params: { username: comment.user.username } }">
           <span>{{ comment.user.username }} </span>
         </router-link> 

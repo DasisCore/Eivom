@@ -111,7 +111,7 @@ export default {
     ...mapGetters(['get_movie', 'isLiking', 'currentUser', 'get_movie_data']),
   },
   methods: {
-    ...mapActions(['likeMovie', 'fetchCurrentUser',]),
+    ...mapActions(['likeMovie', 'fetchCurrentUser', 'search']),
     click_actor: function() {
       if (this.menubar === false) {
         this.menubar = true
@@ -159,6 +159,7 @@ export default {
       })
       .catch(err => console.log(err))
       this.fetchCurrentUser()
+      this.search(this.movie)
   },
   mounted() {
     document.querySelectorAll('.heart, .heart-button').forEach(button => button.addEventListener('click', () => button.classList.toggle('active')));

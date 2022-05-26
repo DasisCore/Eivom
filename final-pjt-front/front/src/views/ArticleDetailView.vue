@@ -17,7 +17,7 @@
         <div class="d-flex align-items-center">
           <div>
             <img v-if="article.user.profile_img" :src="article.user.profile_img" alt="profile_img" class="profile_img">
-            <img v-else class="profile" src="@/assets/default_profile.jpg">
+            <img v-else class="profile_img" src="@/assets/default_profile.jpg">
           </div>
           <div>
             <p>{{ article.user.username }}</p>
