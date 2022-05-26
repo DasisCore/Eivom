@@ -4,26 +4,11 @@
 
 
 
-![back1-removebg-preview (1)](README.assets/back1-removebg-preview (1).png)
+![로고](README.assets/로고.png)
 
+# 영화에 젖다.
 
-
-<center style="font-size: 20px; font-weight: 700; color: gray;"> 영화에 젖다. </center>
-<center style="font-size: 40px; font-weight: 700"> Project Eivom </center>
-
------------------
-
-
-
-
-
-## 목차
-
-
-
-[TOC]
-
-
+# Project Eivom
 
 
 
@@ -95,7 +80,7 @@
 
 #### UI 프로토타입 (메인)
 
-![[movie project] 메인페이지](README.assets/[movie project] 메인페이지.jpg)
+![메인 프로토타입](README.assets/메인 프로토타입.jpg)
 
 
 
@@ -105,7 +90,7 @@
 
 #### [메인페이지]
 
-![메인](README.assets/메인.gif)
+![메인](README.assets/메인-16535796907481.gif)
 
 - 메인 페이지인만큼 이목을 끌 수 있는 영화를 선정.
 - 기본적으로 네비게이션 바의 항목을 이용해 다른 탭으로 이동 가능
@@ -115,7 +100,7 @@
 
 #### [로그인 기능]
 
-![로그인](README.assets/로그인.gif)
+![로그인](README.assets/로그인-16535796982042.gif)
 
 - 네비게이션 바를 통해 진입
 - 서버의 데이터베이스의 정보와 동일해야 로그인 가능
@@ -128,7 +113,7 @@
 
 #### [프로필 페이지]
 
-![프로필 페이지](README.assets/프로필 페이지.gif)
+![프로필 페이지](README.assets/프로필 페이지-16535797018623.gif)
 
 - 해당 유저가 좋아요를 누른 영화 확인 가능.
 - 영화 포스터를 통해 해당 영화로 이동 가능.
@@ -139,7 +124,7 @@
 
 #### [팔로우 기능]
 
-![좋아요 기능](README.assets/좋아요 기능.gif)
+![좋아요 기능](README.assets/좋아요 기능-16535797144814.gif)
 
 
 
@@ -149,7 +134,7 @@
 
 #### [영화 상세 페이지]
 
-![영화상세](README.assets/영화상세.gif)
+![영화 상세페이지](README.assets/영화 상세페이지-16535797183255.gif)
 
 - 해당 영화의 정보, 출연진, 비슷한 영화 정보 제공
 - 댓글 기능 제공
@@ -159,7 +144,7 @@
 
 #### [게시판 기능]
 
-![게시판](README.assets/게시판.gif)
+![게시판](README.assets/게시판-16535797284546.gif)
 
 - 게시글 작성 / 삭제 / 수정 기능
 - 댓글 작성 / 삭제 / 수정 기능
@@ -170,7 +155,7 @@
 
 ### [영화 추천 기능]
 
-![영화 추천 기능](README.assets/영화 추천 기능.gif)
+![영화 추천 기능](README.assets/영화 추천 기능-16535797358597.gif)
 
 - 알고리즘을 통해 영화 추천.
 - 영화 추천 후 해당 영화로 이동 가능
