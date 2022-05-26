@@ -14,7 +14,6 @@ import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import SignUpView from '../views/SignUpView.vue'
 import NotFound404 from '../views/NotFound404.vue'
-import FooterView from '../views/FooterView.vue'
 
 // 임시 영화 상세 페이지 라우터
 import MovieDetailView from '../views/MovieDetailView.vue'
@@ -77,11 +76,6 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUpView
-  },
-  {
-    path: '/easteregg',
-    name: 'easteregg',
-    commponent: FooterView
   },
   {
     path: '/moviedetail/:movie_id',

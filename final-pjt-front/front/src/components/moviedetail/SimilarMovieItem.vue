@@ -12,7 +12,7 @@
       <p>{{ overview }}</p>
       <div class="d-flex justify-content-between">
         <button class="watch m-1" @click="reload">다른 영화 보기</button>
-        <button class="watch m-1">상세보기</button>
+        <a :href="`http://localhost:8080/moviedetail/${ movie_id }`"><button class="watch m-1">상세보기</button></a>
       </div>
     </div>
   </div>
@@ -39,6 +39,7 @@ export default {
       backdrop_path: "",
       overview: "",
       release_data: "",
+      movie_id: "",
     }
   },
   methods: {
@@ -52,6 +53,7 @@ export default {
         }
       })
         .then(res => {
+          // console.log(res)
           const movie = res.data.results[random_num]
           this.title = movie.title
           this.original_title = movie.original_title
@@ -67,7 +69,7 @@ export default {
   },
   mounted() {
     const random_num = _.random(0, 10)
-    console.log(random_num)
+    // console.log(random_num)
     axios.get(URL + this.movie + "/similar", {
       params: {
         api_key: API_KEY,
@@ -82,6 +84,7 @@ export default {
         this.release_data = movie.release_data
         this.backdrop_path = movie.backdrop_path
         this.vote_average = movie.vote_average
+        this.movie_id = movie.id
       })
       .catch(err => {
         console.log(err)
@@ -98,6 +101,9 @@ export default {
     font-weight: 500;
     background: black;
   } */
+  a {
+    text-decoration: none;
+  }
 
   /* 영화 카드 */
   .movie-card {

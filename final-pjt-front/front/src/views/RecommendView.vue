@@ -134,8 +134,8 @@
       <div class="movie-card">
           <div class="poster-wrapper">
             <div class="poster">
-              <img v-if="poster_path" :src="`https://image.tmdb.org/t/p/original/${ poster_path }`" alt="poster" />
-              <img v-else src="@/assets/Eivom_poster.jpg" alt="poster" />
+              <a :href="`http://localhost:8080/moviedetail/${ movie_id }`"><img v-if="poster_path" :src="`https://image.tmdb.org/t/p/original/${ poster_path }`" alt="poster" />
+              <img v-else src="@/assets/Eivom_poster.jpg" alt="poster" /></a>
             </div>
           </div>
           <!-- end poster-wrapper -->

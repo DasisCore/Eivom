@@ -49,8 +49,21 @@
     <router-view/>
 
     <footer class="fs-3 text-center">
-      <router-link to="/easteregg" class="nav-link text-secondary">footer</router-link>
+      <div class="foot d-flex justify-content-center align-items-center" style="height: 100px">
+        <div class="">
+          <div><a href="https://github.com/DasisCore/last-project"><i class="fa-brands fa-github"></i></a></div>
+          <div style="font-size: 10px;">MADE BY</div>
+          <div class="d-flex">
+            <div style="font-size: 15px; margin-right: 10px;">Hyeoungjun Yoon</div>
+            <div style="font-size: 15px; margin-left: 10px;">Jaeyoung Heo</div>
+          </div>
+        </div>
+      </div>
     </footer>
+
+    <div style="position:fixed; top: 92%; left: 96%; color: rgba(115, 115, 115, 0.709); z-index: 1000">
+      <div class="posit" style="cursor:pointer;" onclick="window.scrollTo(0,0);"><i class="fa-solid fa-circle-chevron-up fa-3x"></i></div>
+    </div>
   </div>
 </template>
 
@@ -83,6 +96,27 @@ export default {
 <style scoped>
   @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css";
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+  a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+  }
+
+  posit {
+    display: none;
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+  }
+
+  footer {
+    background-color: #24292f;
+    font-family: 'Noto Sans KR',  sans-serif;
+    font-weight: 300;
+    color: white;
+    height: 100px;
+  }
+
 
   nav {
   height: 100%;
