@@ -12,7 +12,6 @@
       :nav="false"
       :dots="false"
       :autoplay="true"
-      :slideTransition="linear"
       :autoplayTimeout="6000"
       :autoplaySpeed="6000"
       :autoplayHoverPause="true"

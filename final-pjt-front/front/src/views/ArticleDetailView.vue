@@ -21,7 +21,8 @@
           </div>
           <div>
             <p>{{ article.user.username }}</p>
-            <p>{{ article.created_at }}</p>
+            <p>작성일 {{ article.created_at }}</p>
+            <p>수정일 {{ article.updated_at }}</p>
           </div>
         </div>
       <hr>
