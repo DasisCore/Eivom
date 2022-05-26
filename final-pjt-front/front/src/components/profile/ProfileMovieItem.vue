@@ -74,6 +74,7 @@ export default {
   p {
     font-family: 'Noto Sans KR',  sans-serif;
     font-size: 1.5rem;
+    font-weight: 700;
   }
 
   a {
@@ -102,7 +103,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr 2fr 1fr;
-  background: rgba(53, 53, 53, 0.505);
+  background: rgba(53, 53, 53, 0.706);
   color: #ffffff;
   opacity: 0;
   transition: all 1.0s;

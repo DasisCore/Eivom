@@ -65,8 +65,11 @@
     </div>
 
     <!-- 영화 카드 리스트 -->
-    <div class="page d-flex justify-content-center">
+    <div class="page">
       <main-card-list></main-card-list>
+    </div>
+    <div style="height:500px">
+
     </div>
   </div>
 </template>
@@ -184,7 +187,7 @@
 
   #review > div > p {
     width: 50vw;
-    font-size: 1.5vw;
+    font-size: 2vw;
     color: #ffffffd1;
     font-family: 'Noto Sans KR',  sans-serif;
     font-weight: 500;
@@ -223,7 +226,9 @@
   }
 
   .page {
-    height: 100vh;
+    position: relative;
+    /* height: 100vh; */
+    margin: 0;
   }
 
   .byline {

@@ -1,7 +1,7 @@
 <template>
-  <div class="app2">
-    <div class="community">
-      <h1>Community</h1>
+  <div class="haha">
+    <div class="community d-flex justify-content-between">
+      <h1>커뮤니티</h1>
       <router-link :to="{ name: 'articleNew' }">
         <button class="yp-btn yp-btn-white">게시글 작성</button>
       </router-link>
@@ -46,6 +46,9 @@
           </tbody>
       </table>
     </div>
+
+
+
     <!-- <div class="d-flex justify-content-center">
       <pagination></pagination>
     </div> -->
@@ -75,52 +78,63 @@ export default {
 
 <style scoped>
 @import 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap';
-  * {
-    font-family: 'Noto Sans KR',  sans-serif;
-    font-weight: 500;
+  
+  table {
+    font-family: 'Noto Sans KR',  sans-serif !important;
   }
+
   a {
     text-decoration: none;
     color: black;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
   }
   .community {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin: 70px 30px 50px 30px;
+
   }
-  .app2 {
-    height: 600px;
+
+  .community > h1 {
+    font-size: 55px;
+    font-weight: 700;
+  }
+
+  #commu {
+    height: 100%;
     width: 60rem;
   }
 
   .board table {
-    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1),
-      0px 1px 2px 1px rgba(0, 0, 0, 0.06);
-    border-radius: 8px;
+    box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.275);
+    border-radius: 6px;
     overflow: hidden;
-    width: 100%;
+    width: 65vw;
+    height: 100%;
+
   }
 
   .board__header {
-    background-color: lightgrey;
-    color: var(--board-header-text);
+    background-color: #f4f4f5;
+    color: black;
   }
 
   .board__header__row {
     padding: 0.5rem;
     text-align: center;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 700;
   }
   .board__body {
     background-color: var(--board-body);
-    color: var(--board-body-text);
-    border-top: 1px solid var(--board-body-line);
+    /* color: gray; */
+    border-top: 2px solid #f2f2f2;
   }
   .board__body__row {
     padding: 0.5rem;
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
+    font-weight: 400;
+    /* border-left: 1px solid #f2f2f2; */
   }
   /* th:nth-child(2) {
     width: 100%;
@@ -178,30 +192,18 @@ export default {
   }
 
   .yp-btn {
+    top: 10px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 20px;
     position: relative;
-    height: 40px;
-    width: 120px;
+    height: 60px;
+    width: 220px;
     z-index: 1;
+    box-shadow: 3px 5px 6px 1px rgba(0, 0, 0, 0.281);
+    
   }
-  .yp-btn.yp-btn-xs {
-    padding: 4px 15px;
-  }
-  .yp-btn.yp-btn-sm {
-    padding: 8px 20px;
-  }
-  .yp-btn.yp-btn-md {
-    padding: 15px 40px;
-  }
-  .yp-btn.yp-btn-lg {
-    padding: 15px 50px;
-  }
-  .yp-btn.yp-btn-full {
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-  }
+
   .yp-btn:before {
     content: "";
     position: absolute;
@@ -209,10 +211,8 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    /* border: 2px solid #fff; */
     border-radius: 5px;
     z-index: -1;
-    /* transform: skew(-6deg); */
     background: none;
     transition: 0.3s background ease, 0.3s border ease;
   }

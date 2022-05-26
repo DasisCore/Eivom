@@ -1,11 +1,9 @@
 <template>
   <div class="app">
     <div>
-      <div class="d-flex justify-content-between">
-  
+      <div class="d-flex justify-content-around">
         <article-list></article-list>
-        <community-card></community-card>
-   
+        <community-card></community-card>  
       </div>
       
     </div>
@@ -30,10 +28,5 @@ export default {
 </script>
 
 <style scoped>
-.app {
-  margin-left: 10rem;
-  margin-right: 10rem;
-  height: 40rem;
-}
 
 </style>

@@ -49,14 +49,18 @@
 
         <div id="menu" class="d-flex justify-content-between" >
           <div class="d-flex">
-            <div id="actors" class="long_menu ms-5 me-5 active" @click="click_actor" >배우들 목록</div>
+            <div id="actors" class="long_menu ms-5 me-5 actived" @click="click_actor" >배우들 목록</div>
             <div id="s_movie" class="long_menu ms-5 me-5" @click="click_s_movie" >비슷한 영화</div>
           </div>
           <div>
-            <button @click="likeMovie(moviePk)" v-if="isLiking">이 영화 찜 취소</button>
-            <button @click="likeMovie(moviePk)" v-else>이 영화 찜하기</button>
+            <!-- <button @click="likeMovie(moviePk)" v-if="isLiking">이 영화 찜 취소</button>
+            <button @click="likeMovie(moviePk)" v-else>이 영화 찜하기</button> -->
             <!-- <button @click="likeMovie(moviePk)">이 영화 찜하기</button> -->
 
+            <button id="follow" @click="likeMovie(moviePk)" class="heart-button" :class="{active : isLiking}">
+              <div class="heart-flip"></div>
+              <span>Like<span>d</span></span>
+            </button>
             
           </div>
         </div>
@@ -113,8 +117,8 @@ export default {
         this.menubar = true
         const actors = document.querySelector("#actors")
         const s_movie = document.querySelector("#s_movie")
-        actors.classList.add('class', 'active')
-        s_movie.classList.remove('class', 'active')
+        actors.classList.add('class', 'actived')
+        s_movie.classList.remove('class', 'actived')
       }
     },
     click_s_movie: function() {
@@ -122,8 +126,8 @@ export default {
         this.menubar = false
         const actors = document.querySelector("#actors")
         const s_movie = document.querySelector("#s_movie")
-        actors.classList.remove('class', 'active')
-        s_movie.classList.add('class', 'active')
+        actors.classList.remove('class', 'actived')
+        s_movie.classList.add('class', 'actived')
       }
     }
   },
@@ -156,6 +160,9 @@ export default {
       .catch(err => console.log(err))
       this.fetchCurrentUser()
   },
+  mounted() {
+    document.querySelectorAll('.heart, .heart-button').forEach(button => button.addEventListener('click', () => button.classList.toggle('active')));
+  },
   watch: {
       '$route' (to, from) {
         location.reload()
@@ -174,26 +181,28 @@ export default {
     font-family: 'Noto Sans KR',  sans-serif;
     font-size: 20px;
     font-weight: 500;
-    padding-bottom: 15px;
+    padding-bottom: 8px;
     border-bottom: 1.5px solid #bcbcbc;
   }
 
-  .active:after {
+  .actived:after {
     padding-right: 15px;
     content: "";
     display: block;
     border-bottom: 2px solid #000000;
     width: 100px;
     position: absolute;
-    margin: 14.5px auto;
+    margin: 12px auto;
   }
 
   #actors {
     cursor: pointer;
+    line-height: 1.9;
   }
 
   #s_movie {
     cursor: pointer;
+    line-height: 1.9;
   }
 
   #info {
@@ -202,7 +211,7 @@ export default {
     font-weight: 500;
     color: #6c757d;
   }
-
+/* 
   .long_menu:hover:after {
     content: "";
     display: block;
@@ -211,7 +220,7 @@ export default {
     margin: 3px auto;
     position: absolute;
     margin-left: 20px;
-    }
+    } */
 
 
   .loading {
@@ -345,5 +354,150 @@ export default {
     .heading {top: 30%;} 
     .middle {top: 15%;}
   }
+
+  #follow {
+    margin-bottom: 5px;
+  }
+
+  #follow span {
+    font-size: 0.9rem;
+  }
+
+
+  .heart,
+  .heart-button {
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .heart .heart-flip,
+  .heart-button .heart-flip {
+    --base: 32px;
+    --duration: .6s;
+    --active: #ea4673;
+    --inactive: #d1d6ee;
+    width: var(--base);
+    height: calc(var(--base) + var(--base) / 2);
+    border-radius: calc(var(--base) / 2) calc(var(--base) / 2) 0 0;
+    position: relative;
+    transform-origin: 50% 66.66%;
+    transform-style: preserve-3d;
+    transform: rotate(var(--rotate, -45deg));
+    transition: background var(--duration), transform var(--duration) ease;
+    background: var(--heart-background, var(--inactive));
+  }
+  .heart .heart-flip:before, .heart .heart-flip:after,
+  .heart-button .heart-flip:before,
+  .heart-button .heart-flip:after {
+    content: "";
+    width: calc(var(--base) / 2);
+    height: var(--base);
+    border-radius: var(--pseudo-border-radius, calc(var(--base) / 2) 0 0 calc(var(--base) / 2));
+    position: absolute;
+    left: var(--pseudo-left, -50%);
+    transform-origin: var(--pseudo-origin, 100%) 50%;
+    bottom: 0;
+    background: var(--heart-background, var(--inactive));
+    filter: brightness(var(--pseudo-filter, 50%));
+    transform: translateX(1%) rotateY(var(--pseudo-rotate, 90deg)) translateZ(0);
+    transition: background var(--duration), transform var(--duration) ease, filter var(--duration);
+  }
+  .heart .heart-flip:after,
+  .heart-button .heart-flip:after {
+    --pseudo-border-radius: 0 calc(var(--base) / 2) calc(var(--base) / 2) 0;
+    --pseudo-left: 100%;
+    --pseudo-origin: 0;
+    filter: brightness(var(--pseudo-filter-second, 100%));
+    transform: translateX(-1%) rotateY(var(--pseudo-rotate-second, 0deg)) translateZ(0);
+  }
+  .heart.active .heart-flip,
+  .heart-button.active .heart-flip {
+    --rotate: 45deg;
+    --pseudo-filter: 100%;
+    --pseudo-filter-second: 50%;
+    --pseudo-rotate: 0deg;
+    --pseudo-rotate-second: 90deg;
+    --heart-background: var(--active);
+  }
+
+  .heart {
+    background: none;
+    border: none;
+    padding: 0;
+    transform: scale(var(--button-scale, 1)) translateZ(0);
+    transition: transform 0.2s;
+  }
+  .heart:active {
+    --button-scale: .95;
+  }
+
+  .heart-button {
+    --duration: .4s;
+    --color: #404660;
+    --color-hover: #2b3044;
+    --color-active: #fff;
+    --border: #d1d6ee;
+    --border-hover: #bbc1e1;
+    --border-active: #ea4673;
+    --background: #fff;
+    --background-active: #ea4673;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 7px;
+    color: var(--button-color, var(--color));
+    border: 1px solid var(--button-border, var(--border));
+    background: var(--button-background, var(--background));
+    transform: scale(var(--button-scale, 1)) translateZ(0);
+    transition: background var(--duration), border-color var(--duration), color var(--duration), transform 0.2s;
+  }
+  .heart-button .heart-flip {
+    --base: 8px;
+    --active: #fff;
+    --inactive: #bbc1e1;
+    display: inline-block;
+    vertical-align: top;
+    margin: 4px 6px 0 0;
+  }
+  .heart-button span {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .heart-button > span {
+    transform: translateX(var(--text-x, 4px));
+    transition: transform var(--duration);
+  }
+  .heart-button > span span {
+    display: inline-block;
+    vertical-align: top;
+    opacity: var(--span-opacity, 0);
+    transform: translateX(var(--span-x, 4px));
+    transition: opacity var(--duration), transform var(--duration);
+  }
+  .heart-button:active {
+    --button-scale: .95;
+  }
+  .heart-button:hover {
+    --button-color: var(--color-hover);
+    --button-border: var(--border-hover);
+  }
+  .heart-button.active {
+    --text-x: 0;
+    --button-color: var(--color-active);
+    --button-border: var(--border-active);
+    --button-background: var(--background-active);
+    --span-opacity: 1;
+    --span-x: 0;
+  }
+
+
+
+
+
+
+
 
 </style>
