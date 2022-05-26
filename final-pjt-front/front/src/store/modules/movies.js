@@ -22,7 +22,8 @@ export default{
     get_movie_data: state => state.movie_data,
     get_movie: state => state.movie,
     get_comments: state => state.comments,
-    isLiking: state => _.includes(state.movie_data.like_user, state.currentUser.pk),
+    // isLiking: state => _.includes(state.movie_data.like_user, state.currentUser.pk),
+    isLiking: state => _.some(state.movie_data.like_user, {"pk":state.currentUser.pk}),
   },
   mutations:{
     SET_CURRENT_USER: (state, user) => state.currentUser = user,

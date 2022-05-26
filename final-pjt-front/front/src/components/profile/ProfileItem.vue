@@ -5,10 +5,15 @@
       <div class="d-flex justify-content-center">
         <div id="main_profile"  class="d-flex justify-content-between">
           <div class="d-flex flex-column">
-            <router-link :to="{ name: 'profileImg' }">
+            <router-link :profile_img="profile.profile_img" v-if="currentUser.username == profile.username" :to="{ name: 'profileImg', params : { username: profile.username } } ">
+              <div class="changeText">프로필 사진 변경</div>
               <img v-if="profile.profile_img" :src="profile.profile_img">
               <img v-else class="profile" src="@/assets/default_profile.jpg">
             </router-link>
+            <div v-else>
+              <img v-if="profile.profile_img" :src="profile.profile_img">
+              <img v-else class="profile" src="@/assets/default_profile.jpg">
+            </div>
           </div>
           <div class="d-flex flex-column" style="margin-top: 80px">
             <div class="d-flex justify-content-between">
@@ -65,7 +70,6 @@ export default {
       colors : ["#F4BFBF", "#CCF3EE" ,"#E3FCBF", "#FFE69A", "#FFF6EA", "#B3E8E5", "#FFFFFF"],
       // 빨: F4BFBF 파:CCF3EE  초: E3FCBF 노:FFE69A 보:F0D9FF 베이지:FFF6EA 민트:B3E8E5 흰:FFFFFF
       random_num: 0,
-
     }
   },
   methods: {
@@ -102,7 +106,28 @@ export default {
     border-radius: 70%;
     margin-right: 15px;
   }
-
+  a:hover img {
+    transition: all 0.3s;
+    filter: brightness(65%);
+  }
+  a:hover .changeText {
+    
+    opacity: 1;
+  }
+  .changeText {
+    transition: all 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    color: white;
+    -webkit-text-stroke: 0.6px black;
+    font-size: 25px;
+    z-index: 10;
+  }
   #back_profile {
     height: 37rem;
   }
@@ -125,7 +150,7 @@ export default {
   }
 
   #main_profile {
-    width: 700px
+    width: 800px
   }
 
   span {

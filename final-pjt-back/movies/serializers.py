@@ -13,7 +13,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('pk','username', 'profile_img',)
 
 class MovieListSerializer(serializers.ModelSerializer):
-    
+    class UserSerializer(serializers.ModelSerializer):
+
+        class Meta:
+            model = User
+            fields = ('pk',)
     like_user = UserSerializer(read_only=True, many=True)
     
     class Meta:

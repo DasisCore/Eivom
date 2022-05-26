@@ -53,6 +53,10 @@ export default {
         .then(res => {
           console.log(res.data)
           commit('SET_PROFILE_IMG', res.data)
+          router.push({
+            name: 'profile',
+            params: { username: getters.currentUser.username }
+          })
         })
         .catch(err => console.error(err.response))
     },

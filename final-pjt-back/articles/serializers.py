@@ -29,6 +29,11 @@ class CommentSerializer(serializers.ModelSerializer):
         read_only_fields = ('article',)
 
 class ArticleListSerializer(serializers.ModelSerializer):
+    
+    # class UserSerializer(serializers.ModelSerializer):
+    #     class Meta:
+    #         model = User
+    #         fields = ('pk')
     user = UserSerializer(read_only=True)
     article_like = ArticleLikeListSerializer(read_only=True, many=True)
     comments = CommentSerializer(many=True, read_only=True)

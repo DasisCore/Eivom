@@ -59,7 +59,7 @@ const routes = [
     component: ProfileView
   },
   {
-    path: '/profile/img',
+    path: '/upload_img/:username',
     name: 'profileImg',
     component: ProfileImgChange
   },

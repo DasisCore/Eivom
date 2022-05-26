@@ -29,8 +29,8 @@ export default {
 
 <style scoped>
 .app {
-  margin-left: 18rem;
-  margin-right: 18rem;
+  margin-left: 15rem;
+  margin-right: 15rem;
   height: 40rem;
 }
 

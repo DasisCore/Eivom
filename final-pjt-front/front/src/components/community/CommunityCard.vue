@@ -67,7 +67,7 @@ export default {
   }
   .app3 {
     margin-top: 190px;
-    width: 30vw;
+    /* width: 30vw; */
     height: 400px;
     /* width: 40rem; */
     /* background-color: lightgrey; */

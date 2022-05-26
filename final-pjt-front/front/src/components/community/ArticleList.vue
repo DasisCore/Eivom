@@ -81,8 +81,11 @@ export default {
   
   table {
     font-family: 'Noto Sans KR',  sans-serif !important;
+    width: 900px;
   }
-
+  .haha{
+    width: 900px;
+  }
   a {
     text-decoration: none;
     color: black;
@@ -104,12 +107,13 @@ export default {
     width: 60rem;
   }
 
+
   .board table {
     box-shadow: 1px 2px 3px 2px rgba(0, 0, 0, 0.275);
     border-radius: 6px;
     overflow: hidden;
-    width: 65vw;
-    height: 100%;
+    /* width: 65vw; */
+    /* height: 100%; */
 
   }
 

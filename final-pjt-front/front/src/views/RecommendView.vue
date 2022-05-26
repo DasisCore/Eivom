@@ -188,7 +188,7 @@ export default {
       without_genres: [],
       primary_release_date_gte: "",
       sort_by: "",
-      include_adult: false,
+      include_adult: null,
       vote_average_gte: 5,
 
       title: "",
