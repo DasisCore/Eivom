@@ -1,38 +1,12 @@
 <template>
-<<<<<<< HEAD
-    <div class="app3" v-if="poster_path != '' ">
-      <h2>이 영화는 어떠세요?</h2>
-        <div class="cards">
-          <div class="card__left">
-            <img class="card__left__img" :src="`https://image.tmdb.org/t/p/original${poster_path}`"/>
-          </div>
-        <div class="card__right">
-          <div class="card__right__header">
-            <div class="card__right__header__title">
-              <h3>{{ title }}</h3>
-            </div>
-          </div>
-          <div class="card__right__genres">
-            <span class="card__right__genre" v-for="genre in genres" :key="genre.id">
-              {{ genre.name }}
-            </span>
-            <div class="card__right__header__score">
-              <i class="fa-solid fa-star" style="color: #ffac33"></i>
-              <p>{{ vote_average }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-=======
     <div class="app3">
       <h3>이 영화 어때요</h3>
       <community-card-item></community-card-item>
->>>>>>> 8e702aadde5b5d6b19bf16a078cf5d285d9ea4d7
     </div>
 </template>
 
 <script>
-// import CommunityCardItem from './CommunityCardItem.vue'
+import CommunityCardItem from './CommunityCardItem.vue'
 
 import _ from 'lodash'
 import axios from "axios"
@@ -43,10 +17,10 @@ let num = _.random(0,19)
 
 
 export default {
-  
+
   name: 'community_card',
   components: {
-    // CommunityCardItem,
+    CommunityCardItem,
   },
   data: function(){
     return {
@@ -96,11 +70,7 @@ export default {
     width: 30vw;
     height: 400px;
     /* width: 40rem; */
-<<<<<<< HEAD
-    background-color: rgb(245, 245, 245);
-=======
     /* background-color: lightgrey; */
->>>>>>> 8e702aadde5b5d6b19bf16a078cf5d285d9ea4d7
     /* border: 2px solid; */
     display: flex;
     flex-direction: column;
