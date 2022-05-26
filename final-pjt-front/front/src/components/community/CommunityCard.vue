@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// import CommunityCardItem from './CommunityCardItem.vue'
+import CommunityCardItem from './CommunityCardItem.vue'
 
 import _ from 'lodash'
 import axios from "axios"
@@ -17,10 +17,10 @@ let num = _.random(0,19)
 
 
 export default {
-  
+
   name: 'community_card',
   components: {
-    // CommunityCardItem,
+    CommunityCardItem,
   },
   data: function(){
     return {
