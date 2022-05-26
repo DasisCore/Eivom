@@ -67,7 +67,7 @@ export default {
   data() {
     return {
       username: this.$route.params.username,
-      colors : ["#F4BFBF", "#CCF3EE" ,"#E3FCBF", "#FFE69A", "#FFF6EA", "#B3E8E5", "#FFFFFF"],
+      colors : ["#F4BFBF", "#CCF3EE" ,"#E3FCBF", "#FFE69A", "#FFF6EA", "#B3E8E5", ],
       // 빨: F4BFBF 파:CCF3EE  초: E3FCBF 노:FFE69A 보:F0D9FF 베이지:FFF6EA 민트:B3E8E5 흰:FFFFFF
       random_num: 0,
     }
@@ -79,7 +79,7 @@ export default {
   created() {
     const payload = { username: this.$route.params.username }
     this.fetchProfile(payload)
-    this.random_num = _.random(0, 6)
+    this.random_num = _.random(0, 5)
 
   },
   mounted() {

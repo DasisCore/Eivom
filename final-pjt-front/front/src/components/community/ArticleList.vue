@@ -27,7 +27,7 @@
               <td class="board__body__row">{{ article.pk }}</td>
               <router-link :to="{ name: 'article', params : { articlePk: article.pk} }">
                 <td class="board__body__row hover">
-                  {{ article.title }}
+                  {{ article.title }} <span style="color: #EE3B3B">[{{ article.comments.length }}]</span>
                   <!-- <span class="board__comment"
                     >[{{ article.comments_count }}]</span -->
                   

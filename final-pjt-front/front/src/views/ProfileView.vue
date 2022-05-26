@@ -4,19 +4,17 @@
     
     <profile-item></profile-item>
     <profile-movie-list :likeMovies="profile.like_movies"></profile-movie-list>
-    <profile-comment-list></profile-comment-list>
   </div>
 </template>
 
 <script>
 import ProfileItem from '../components/profile/ProfileItem.vue'
 import ProfileMovieList from '../components/profile/ProfileMovieList.vue'
-import ProfileCommentList from '../components/profile/ProfileCommentList.vue'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'ProfileView',
   components: {
-    ProfileItem, ProfileMovieList, ProfileCommentList
+    ProfileItem, ProfileMovieList,
   },
   computed: {
     ...mapGetters(['profile'])
