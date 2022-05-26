@@ -1,60 +1,93 @@
 <template>
-
-  <div class="appdetail">
-    <div class="margin">
-      <div class="d-flex justify-content-between align-items-end">
-        <h3>{{ article.title }}</h3>
-        <div>
-          <div v-if="isAuthor">
-            <router-link :to="{ name: 'articleEdit', params: { articlePk } }">
-              <button class="yp-btn yp-btn-white button">Edit</button>
-            </router-link>
-            <button class="yp-btn yp-btn-white button" @click="deleteArticle(articlePk)">Delete</button>
+  <div id="b_color">
+    <div style="height: 50px;"></div>
+    <div class="container appdetail">
+      <div class="margin">
+      <div class="article_logo display-5">
+        게시글
+      </div>
+        <div class="d-flex justify-content-between align-items-end">
+          <div id="title">{{ article.title }}</div>
+          <div>
+            <div v-if="isAuthor">
+              <div id="dropstart" class="dropstart">
+                <button type="button" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                <ul class="dropdown-menu">
+                  <router-link :to="{ name: 'articleEdit', params: { articlePk } }">
+                    <div class="dropdown-item">
+                      <button class="drop_in_button">게시글 수정</button>
+                    </div>
+                  </router-link>
+                  <div class="dropdown-item" @click="deleteArticle(articlePk)" style="cursor: pointer;">
+                    <button class="drop_in_button">게시글 삭제</button>
+                  </div>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <hr>
+        <hr>
+          <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <div>
+                <a :href="`http://localhost:8080/profile/${article.user.username}`">
+                  <img v-if="article.user.profile_img" :src="article.user.profile_img" alt="profile_img" class="profile_img">
+                  <img v-else class="profile_img" src="@/assets/default_profile.jpg">
+                </a>
+              </div>
+              <div>
+                <a :href="`http://localhost:8080/profile/${article.user.username}`"><div id="article_writer">{{ article.user.username }}</div></a>
+                <div class="d-flex" id="create_update_at">
+                  <div>작성일 {{ article.created_at }}</div>
+                  <div style="font-size:10px">|</div>
+                  <div>수정일 {{ article.updated_at }}</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div id="side_like" class="likecomment">
+                <div><i class="fa-regular fa-heart" style="color:red;"></i>&nbsp;</div>
+                <span>좋아요 {{ likeCount }}</span><div>&nbsp;&nbsp;&nbsp;</div>
+                <div>
+                  <i class="fa-regular fa-comment"></i>
+                  댓글 {{ article.comments.length }}
+                </div>
+              </div>
+            </div>
+          </div>
+        <hr>
+        <div id="article_content">{{ article.content }}</div>
+
+        <!-- Article Like UI -->
         <div class="d-flex align-items-center">
-          <div>
-            <img v-if="article.user.profile_img" :src="article.user.profile_img" alt="profile_img" class="profile_img">
-            <img v-else class="profile_img" src="@/assets/default_profile.jpg">
-          </div>
-          <div>
-            <p>{{ article.user.username }}</p>
-            <p>작성일 {{ article.created_at }}</p>
-            <p>수정일 {{ article.updated_at }}</p>
-          </div>
-        </div>
-      <hr>
-      <p>{{ article.content }}</p>
-      
-      <!-- Article Edit/Delete UI -->
-      
-
-      <!-- Article Like UI -->
-      <div class="d-flex align-items-center">
-        <button v-if="articleLiking" class="btn btn-link shadow-none" style="color:crimson; font-size:25px;"
-          @click="likeArticle(articlePk)"
-        ><i class="fa-solid fa-heart"></i></button>
-        <button v-else class="btn btn-link shadow-none" style="color:crimson; font-size:25px;"
-          @click="likeArticle(articlePk)"
-        ><i class="fa-regular fa-heart"></i></button>
-        <!-- {{ article.article_like }} -->
-        <div class="likecomment">
-          <span>좋아요 {{ likeCount }}</span> |
-          <div>
-            <i class="fa-regular fa-comment"></i>
-            댓글 {{ article.comments.length }}
+          <button v-if="articleLiking" class="btn btn-link shadow-none" style="color:crimson; font-size:25px;"
+            @click="likeArticle(articlePk)"
+          ><i class="fa-solid fa-heart" style="font-size: 23px"></i></button>
+          <button v-else class="btn btn-link shadow-none" style="color:crimson; font-size:25px;"
+            @click="likeArticle(articlePk)"
+          ><i class="fa-regular fa-heart" style="font-size: 23px"></i></button>
+          <!-- {{ article.article_like }} -->
+          <div class="likecomment">
+            <span>좋아요 {{ likeCount }}</span><div>&nbsp;&nbsp;&nbsp;</div>
+            <div>
+              <i class="fa-regular fa-comment"></i>
+              댓글 {{ article.comments.length }}
+            </div>
           </div>
         </div>
+        <hr>
+        <div id="comment_entry">댓글</div>
+        <!-- Comment UI -->
+        <div id="article_comment_list">
+          <article-comment-list :comments="article.comments"></article-comment-list>
+        </div>
+        <div class="text-end" style="margin-right: 20px;">
+          <router-link :to="{ name: 'community' }">
+            <button class="yp-btn yp-btn-white">목록</button>
+          </router-link>
+        </div>
+        <div style="height: 100px"></div>
       </div>
-      <hr>
-      <!-- Comment UI -->
-      <article-comment-list :comments="article.comments"></article-comment-list>
-      <hr>
-      <router-link :to="{ name: 'community' }">
-        <button class="yp-btn yp-btn-white">목록</button>
-      </router-link>
     </div>
   </div>
 </template>
@@ -94,40 +127,123 @@
 
 <style scoped>
 @import 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap';
-  * {
+
+  #b_color {
+    background-color: RGB(242, 240, 240); 
+  }
+
+  .article_logo {
     font-family: 'Noto Sans KR',  sans-serif;
     font-weight: 500;
+    color: #1d1d1f;
+    /* padding-left: 4%; */
+    padding-top: 5%;
+    padding-bottom: 15px;
+    /* left: 20%;
+    top: 10%; */
   }
-.appdetail{
-  /* margin-top: 3rem; */
-  margin-left: 20rem;
-  margin-right: 20rem;
-  height: 80rem;
-  background-color: #fff6ea;
-}
-.margin {
-  margin: 25px;
-}
-.profile_img {
-  width: 60px;
-  height: 60px;
-  border-radius: 70%;
-}
-.userinfo {
-  display: flex;
-  flex-direction: column;
-}
-.likecomment {
-  display: flex;
-  width: 150px;
-  justify-content: space-between;
-}
-img {
-  margin-right: 5px;
-}
-.button {
-  margin:10px;
-}
+
+  hr {
+    margin: 5px 0px 5px 0px;
+  }
+
+  #title {
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  #article_writer {
+    font-size: 23px;
+  }
+
+  #create_update_at > div {
+    font-size: 12px;
+    font-weight: 400;
+    margin-right: 10px;
+    color: #aeaeae;
+  }
+
+  #article_content {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 20px 20px 20px 20px;
+  }
+
+  #side_like {
+    font-size: 15px;
+  }
+
+  #comment_entry {
+    font-size: 25px;
+    font-weight: 600;
+    margin: 10px 10px 10px 10px;
+  }
+
+  #article_comment_list {
+    margin: 10px 20px 10px 20px;
+  }
+
+  #dropstart > button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(133, 133, 133)
+  }
+
+  .drop_in_button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 15px;
+  }
+
+  .dropdown-item:active {
+    background-color: #d0d0d0 !important;
+  }
+  
+
+  * {
+      font-family: 'Noto Sans KR',  sans-serif;
+      font-weight: 500;
+  }
+
+  .appdetail{
+    background-color: #ffffff;
+  }
+
+  .margin {
+    margin: 25px;
+  }
+
+  .profile_img {
+    margin: 10px 10px 10px 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 70%;
+  }
+
+  .userinfo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .likecomment {
+    display: flex;
+    /* width: 150px; */
+    justify-content: space-between;
+  }
+
+  img {
+    margin-right: 5px;
+  }
+
+  .button {
+    margin:10px;
+  }
 /* 버튼 css */
     /* Buttons */
   
@@ -175,34 +291,19 @@ img {
     outline: none;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
-    border: 1.5px solid rgb(9, 9, 56);
+    border: 2px solid rgb(192, 192, 192);
   }
 
   .yp-btn {
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 500;
+    font-size: 15px;
     position: relative;
-    height: 43.1px;
-    width: 120px;
+    height: 35px;
+    width: 45px;
     z-index: 1;
   }
-  .yp-btn.yp-btn-xs {
-    padding: 4px 15px;
-  }
-  .yp-btn.yp-btn-sm {
-    padding: 8px 20px;
-  }
-  .yp-btn.yp-btn-md {
-    padding: 15px 40px;
-  }
-  .yp-btn.yp-btn-lg {
-    padding: 15px 50px;
-  }
-  .yp-btn.yp-btn-full {
-    margin-left: 0;
-    margin-right: 0;
-    width: 100%;
-  }
+
   .yp-btn:before {
     content: "";
     position: absolute;
@@ -211,7 +312,7 @@ img {
     right: 0;
     bottom: 0;
     /* border: 2px solid #fff; */
-    border-radius: 5px;
+    border-radius: 3px;
     z-index: -1;
     /* transform: skew(-6deg); */
     background: none;
@@ -234,23 +335,7 @@ img {
   .yp-btn-white.active:before {
     /* border: 1px solid #fff; */
     border-radius: 5px;
-    background: #FFD2E2;
+    background: #b2b2b2;
   }
 
-  input:checked + label {
-    background: #FFD2E2;
-    border-radius: 5px;
-    color: black;
-  }
-
-  label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
-    cursor: pointer;
-  }
 </style>

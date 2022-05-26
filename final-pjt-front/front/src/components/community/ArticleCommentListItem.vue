@@ -1,29 +1,40 @@
 <template>
-  <li class="comment-list-item" style="list-style:none">
+  <div id="comment-list-item">
     <div class="d-flex justify-content-between">
-      <div>
-        <img v-if="comment.user.profile_img" :src="comment.user.profile_img" alt="profile_img" class="profile_img">
-        <img v-else class="profile_img" src="@/assets/default_profile.jpg">
-        <router-link :to="{ name: 'profile', params: { username: comment.user.username } }">
-          <span>{{ comment.user.username }} </span>
-        </router-link> 
-        
-        <span class="spanfont" v-if="!isEditing">{{ payload.content }}         </span>
+      <div class="d-flex">
+        <a :href="`http://localhost:8080/profile/${ comment.user.username }`">
+          <img v-if="comment.user.profile_img" :src="comment.user.profile_img" alt="profile_img" class="profile_img">
+          <img v-else class="profile_img" src="@/assets/default_profile.jpg">
+        </a>
+        <div id="comment_info">
+          <div class="d-flex">
+            <router-link :to="{ name: 'profile', params: { username: comment.user.username } }">
+              <div>{{ comment.user.username }}</div>
+            </router-link> 
 
-        <span v-if="isEditing">
-          <input type="text" v-model="payload.content">
-          <button class="yp-btn yp-btn-white" @click="onUpdate">Update</button> |
-          <button class="yp-btn yp-btn-white" @click="switchIsEditing">Cancle</button>
-        </span>
+            <div id="comment_edit" v-if="currentUser.username === comment.user.username && !isEditing">
+              <button @click="switchIsEditing">수정</button>
+              <button @click="deleteComment(payload)">삭제</button>
+            </div>
+          </div>
+          <div class="divfont" v-if="!isEditing">{{ payload.content }} </div>
+          <div id="editing" v-if="isEditing">
+            <div class="d-flex">
+              <input type="text" v-model="payload.content">
+              <div>
+                <button @click="onUpdate">수정</button>
+                <button @click="switchIsEditing">취소</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <span v-if="currentUser.username === comment.user.username && !isEditing">
-          <button style="color:gray; font-size:12px;" class="btn btn-link" @click="switchIsEditing">Edit</button>
-          <button style="color:gray; font-size:12px;" class="btn btn-link" @click="deleteComment(payload)">Delete</button>
-        </span>
+
       </div>
-      <p>{{ comment.created_at }}</p>
+      <p>{{ comment.updated_at }}</p>
     </div>
-  </li>
+    <hr>
+  </div>
 </template>
 
 <script>
@@ -64,16 +75,85 @@ export default {
     font-family: 'Noto Sans KR',  sans-serif;
     font-weight: 500;
   }
-  .spanfont {
-    font-weight: 300;
+
+  #comment-list-item {
+    margin: 10px 10px 10px 10px;
   }
+
+  hr {
+    margin: 7px 0px 7px 0px;
+    color: rgb(212, 212, 212);
+  }
+
+  .divfont {
+    font-weight: 400;
+    font-size: 15px;
+  }
+
   img {
     width: 50px;
     border-radius: 70%;
   }
+
   a {
     text-decoration: none;
     color: black;
+  }
+
+  #comment_info {
+    margin: 0px 10px 0px 10px;
+  }
+
+  #comment_edit {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+
+  #comment_edit > button {
+    padding: 0 0 0 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 10px;
+    color: rgb(194, 194, 194);
+    margin: 0 0 0 10px;
+  }
+
+  #editing > div > input {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 15px;
+    font-weight: 400;
+    /* height: 25px; */
+    width: 300px;
+  }
+  #editing > div > input:focus {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 15px;
+    font-weight: 400;
+    /* height: 25px; */
+    width: 300px;
+    outline: none;
+  }
+
+  #editing > div {
+    border: 1px solid rgb(165, 165, 165);
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 400;
+    height: 30px;
+    width: 375px;
+  }
+
+  #editing > div > div > button {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    margin-top: 0px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(136, 136, 136);
   }
 
     /* 버튼 css */

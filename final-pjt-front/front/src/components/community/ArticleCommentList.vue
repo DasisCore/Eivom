@@ -1,14 +1,10 @@
 <template>
   <div class="article-comment-list">
-    
-    <ul style="padding-left:0px;">
-      <article-comment-list-item 
-        v-for="comment in comments" 
-        :comment="comment" 
-        :key="comment.pk">
-      </article-comment-list-item>        
-    </ul>
-
+    <article-comment-list-item 
+      v-for="comment in comments" 
+      :comment="comment" 
+      :key="comment.pk">
+    </article-comment-list-item>        
     <article-comment-list-form></article-comment-list-form>
   </div>
 </template>
