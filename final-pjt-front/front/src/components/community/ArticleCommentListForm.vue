@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="border">
+    <div>
       <form @submit.prevent="onSubmit" class="article-comment-list-form">
         <input type="text" id="comment" v-model="content" placeholder="댓글을 달아주세요" required>
         <button class="yp-btn yp-btn-white">작성</button>
@@ -36,29 +36,15 @@ export default {
 
 <style scoped>
 
-/* .comment-list-form {
-  border: 1px solid black;
-  margin: 1rem;
-  padding: 1rem;
-} */
-/* .content_input {
-  width: 100%;
-  height: 80px;
-  border: 1px solid var(--toast-border);
-  background-color: white;
-  border-radius: 4px;
-  padding: 0.6rem;
-  margin-right: 0.5rem;
-  margin-bottom: 2rem;
-  padding-left: 1.5rem;
-  outline: none;
-} */
   input {
     margin: 10px;
     height: 80px;
     width: 92%;
-    border: white;
+    /* border: white; */
+    border: 2px solid gray;
     outline: none;
+    background-color: #fff6ea;
+    border-radius: 15px;
   }
  
 /* 버튼 css */
@@ -108,7 +94,7 @@ export default {
     outline: none;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
-    border: 1.5px solid rgb(255, 255, 255);
+    border: 0.1px solid black;
   }
 
   .yp-btn {

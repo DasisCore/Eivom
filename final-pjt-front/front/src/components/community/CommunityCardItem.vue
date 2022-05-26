@@ -1,34 +1,15 @@
 <template>
-  <div class="cards">
-    <div class="card__left">
-      <img
-        class="card__left__img"
-        :src="`https://image.tmdb.org/t/p/original${poster_path}`"
-      />
-    </div>
-    <div class="card__right">
-      <div class="card__right__header">
-        <div class="card__right__header__title">
-          <h3>{{ title }}</h3>
-        </div>
-        
-      </div>
-
-      <div class="card__right__genres">
-        <span
-          class="card__right__genre"
-          v-for="genre in genres"
-          :key="genre.id"
-        >
-          {{ genre.name }}
-        </span>
-        <div class="card__right__header__score">
-          <i class="fa-solid fa-star" style="color: yellow"></i>
-          <p>{{ vote_average }}</p>
+  <div>
+    <div class="containers" :style="`background: url('https://image.tmdb.org/t/p/original${poster_path}')`">
+        <!-- <img :src="`https://image.tmdb.org/t/p/original${poster_path}`" alt=""> -->
+        <div class="overlay">
+          <div class = "items"></div>
+          <div class = "items head">
+            <p>{{ title }}</p>
+            <hr>
+          </div>
         </div>
       </div>
-
-    </div>
   </div>
 </template>
 
@@ -36,8 +17,10 @@
 import _ from 'lodash'
 import axios from "axios"
 const URL = "https://api.themoviedb.org/3/movie/"
+const REC = 'recommendations'
 const API_KEY = process.env.VUE_APP_TMDB_API_KEY
-let num1 = _.random(50, 10000)
+
+let num1 = _.random(100, 957)
 export default {
 data: function(){
     return {
@@ -55,7 +38,8 @@ data: function(){
     }
   },
   created() {
-    axios.get(URL + num1, {
+    console.log(num1)
+    axios.get(URL + num1 + REC, {
       params: {
         api_key: API_KEY,
         language: 'ko-KR',
@@ -84,13 +68,8 @@ data: function(){
 }
 </script>
 
-<style>
-  .app5 {
-    height: 300px;
-    width: 300px;
-    background-color: #aed4b6;
-    
-  }
+<style scoped>
+
   .card__left__img {
     width: 150px;
   }
@@ -117,4 +96,114 @@ data: function(){
   .card__right__header__score{
     display: flex;
   }
+
+/* 영화추천 card */
+  img {
+    width: 300px;
+    height: 450px;
+    position: absolute;
+    border-radius: 9px;
+  }
+.containers {
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  width: 300px;
+  height: 450px;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: black;
+  background-size: cover;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 5px #000;
+  box-shadow: 0 0 5px #000;
+  border-radius: 9px;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr;
+  background: rgba(53, 53, 53, 0.505);
+  color: #ffffff;
+  opacity: 0;
+  transition: all 1.0s;
+  font-family: 'Noto Sans KR',  sans-serif;
+  font-weight: 500;
+  border-radius: 9px;
+}
+
+.items {
+  padding-left: 20px;
+  letter-spacing: 3px;
+}
+
+.head {
+  font-size: 30px;
+  line-height: 40px;
+  transform: translateY(40px);
+  transition: all 0.7s;
+}
+
+.head hr {
+  display: block;
+  width: 0;
+  border: none;
+  border-bottom: solid 2px #FEF5DF;
+  position: absolute;
+  left: 20px;
+  transition: all 0.5s;
+}
+
+.price {
+  font-size: 22px;
+  line-height: 10px;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s;
+}
+.price .old {
+  text-decoration: line-through;
+  color: #b3b3b3;
+}
+
+.cart {
+  font-size: 12px;
+  opacity: 0;
+  letter-spacing: 1px;
+  font-family: "Lato", sans-serif;
+  transform: translateY(40px);
+  transition: all 0.7s;
+}
+.cart i {
+  font-size: 16px;
+}
+.cart span {
+  margin-left: 10px;
+}
+
+.containers:hover .overlay {
+  opacity: 1;
+}
+.containers:hover .overlay .head {
+  transform: translateY(0px);
+}
+.containers:hover .overlay hr {
+  width: 75px;
+  transition-delay: 0.4s;
+}
+.containers:hover .overlay .price {
+  transform: translateY(0px);
+  transition-delay: 0.3s;
+  opacity: 1;
+}
+.containers:hover .overlay .cart {
+  transform: translateY(0px);
+  transition-delay: 0.6s;
+  opacity: 1;
+}
 </style>

@@ -2,7 +2,7 @@
 
   <div class="appdetail">
     <div class="margin">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between align-items-end">
         <h3>{{ article.title }}</h3>
         <div>
           <div v-if="isAuthor">
@@ -102,6 +102,7 @@
   margin-left: 20rem;
   margin-right: 20rem;
   height: 80rem;
+  background-color: #fff6ea;
 }
 .margin {
   margin: 25px;
@@ -122,6 +123,9 @@
 }
 img {
   margin-right: 5px;
+}
+.button {
+  margin:10px;
 }
 /* 버튼 css */
     /* Buttons */

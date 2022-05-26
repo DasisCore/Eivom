@@ -102,7 +102,7 @@ export default {
   }
 
   .board__header {
-    background-color: lightgrey;
+    background-color: #fff6ea;
     color: var(--board-header-text);
   }
 
