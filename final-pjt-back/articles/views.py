@@ -65,11 +65,11 @@ def like_article(request, article_pk):
     user = request.user
     if article.article_like.filter(pk=user.pk).exists():
         article.article_like.remove(user)
-        serializer = ArticleSerializer(article)
+        serializer = ArticleListSerializer(article)
         return Response(serializer.data)
     else:
         article.article_like.add(user)
-        serializer = ArticleSerializer(article)
+        serializer = ArticleListSerializer(article)
         return Response(serializer.data)
 
 
