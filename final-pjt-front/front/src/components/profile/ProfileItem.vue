@@ -125,7 +125,7 @@ export default {
     opacity: 0;
     color: white;
     -webkit-text-stroke: 0.6px black;
-    font-size: 25px;
+    font-size: 27px;
     z-index: 10;
   }
   #back_profile {
