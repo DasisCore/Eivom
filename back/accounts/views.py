@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from .serializers import UserSerializer, UserImgSerializer
 # from .models import Comment, Profile
 from rest_framework.response import Response
-# Create your views here.
+
 
 @api_view(['GET', 'PUT'])
 def upload_img(request, username):
@@ -40,12 +40,17 @@ def follow(request, username):
     # return Response(context, status=status.HTTP_200_OK)
     serializer = UserSerializer(user)
     return Response(serializer.data)
+
+
+
 @api_view(['GET'])
 def user_profile(request, username):
     user = get_object_or_404(get_user_model(), username=username)
     if request.method == 'GET':
         serializer = UserSerializer(user)
         return Response(serializer.data)
+
+
 
 # @api_view(['POST'])
 # def comment_create(request, username):

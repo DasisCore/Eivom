@@ -8,6 +8,7 @@ class User(AbstractUser):
     profile_img = models.TextField(blank=True)
     
 
+
 # class Profile(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
     

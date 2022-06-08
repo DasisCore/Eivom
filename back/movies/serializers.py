@@ -54,7 +54,6 @@ class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        # fields = '__all__'
         fields = ('id', 'content', 'created_at', 'updated_at', 'movie', 'user', 'movie_comment_like', "rate" )
 
 

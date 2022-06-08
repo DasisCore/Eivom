@@ -25,19 +25,23 @@ def movie_list(request):
 # 영화 디테일 serializer
 @api_view(['GET', 'DELETE', 'PUT'])
 def movie_detail(request, movie_pk):
+    # 해당 영화 데이터가 있을 경우 pass 후 해당 영화에 대한 처리를 진행
     if Movie.objects.filter(movie_id = movie_pk).count() == 1:
         pass
-    else:
-        # 해당 데이터가 없을 경우, movie_id와 pk가 동일한 데이터 생성
+    
+    else: # 해당 데이터가 없을 경우, movie_id와 pk가 동일한 데이터 생성
         movie_data = Movie(pk = movie_pk, movie_id = movie_pk)
         movie_data.save()
     
+    # 영화 데이터 찾기
     movie = get_object_or_404(Movie, pk=movie_pk)
     
+    # 요청이 GET일 경우 해당 영화 데이터 응답
     if request.method == "GET":
         serializer = MovieListSerializer(movie)
         return Response(serializer.data)
 
+    # 요청이 DELETE일 경우 해당 영화 데이터 삭제
     elif request.method == "DELETE":
         movie.delete()
         data = {
@@ -45,6 +49,7 @@ def movie_detail(request, movie_pk):
         }
         return Response(data, status=status.HTTP_204_NO_CONTENT)
     
+    # 요청이 PUT일 경우 해당 영화 데이터 수정
     elif request.method == "PUT":
         serializer = MovieListSerializer(movie, data=request.data)
         if serializer.is_valid(raise_exception=True):
